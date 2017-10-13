@@ -10,9 +10,9 @@ import tikape.runko.domain.Pirtelo;
 
 public class PirteloDao implements Dao<Pirtelo, Integer>{
     
-    private Database database;
+    private Tietokanta database;
 
-    public PirteloDao(Database database) {
+    public PirteloDao(Tietokanta database) {
         this.database = database;
     }
 
