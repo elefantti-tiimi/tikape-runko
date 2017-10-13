@@ -1,16 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tikape.runko.domain;
 
-/**
- *
- * @author strajama
- */
 public class Aines {
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 9f20f343b96d8ba68e700e2631178f186ff826ad
     private Integer id;
     private String nimi;
 
