@@ -19,9 +19,9 @@ import tikape.runko.domain.Aines;
  */
 public class AinesDao implements Dao<Aines, Integer>{
 
-    private Database database;
+    private Tietokanta database;
 
-    public AinesDao(Database database) {
+    public AinesDao(Tietokanta database) {
         this.database = database;
     }
 
