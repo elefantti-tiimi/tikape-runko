@@ -53,9 +53,9 @@ public class Tietokanta {
         // tietokantataulujen luomiseen tarvittavat komennot suoritusjärjestyksessä
         lista.add("CREATE TABLE Pirtelo (id integer PRIMARY KEY, nimi varchar(255));");
         lista.add("CREATE TABLE Aines (id integer PRIMARY KEY, nimi varchar(255))");
-        lista.add("INSERT INTO Pirtelo (nimi) VALUES ('Platon');");
-        lista.add("INSERT INTO Pirtelo (nimi) VALUES ('Aristoteles');");
-        lista.add("INSERT INTO Pirtelo (nimi) VALUES ('Homeros');");
+        lista.add("INSERT INTO Pirtelo (nimi) VALUES ('Piripirtelö');");
+        lista.add("INSERT INTO Pirtelo (nimi) VALUES ('Pirtulo');");
+        lista.add("INSERT INTO Pirtelo (nimi) VALUES ('Suklaapirtelö');");
 
         return lista;
     }

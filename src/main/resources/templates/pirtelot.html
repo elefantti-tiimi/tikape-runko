@@ -7,10 +7,12 @@
     </head>
 
     <body>
-        <h1>&#x1f418; Tervetuloa fantin pirtelöbaariin! &#x1f418;</h1>
+        <h1>hei!</h1>
 
-        <p>Ja .. <span th:text="${viesti}">jotain?</span></p>
-
-        <p><a href="/opiskelijat">Tästä opiskelijalistaukseen.</a></p>
+        <ol>
+            <li th:each="pirtelo: ${pirtelot}">
+                <span th:text="${pirtelo.nimi}">Pirtelön nimi</span> <a th:href="${'/pirtelot/' + pirtelo.id}">linkki</a>
+            </li>
+        </ol>
     </body>
 </html>
