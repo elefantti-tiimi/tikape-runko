@@ -1,11 +1,7 @@
 package tikape.runko.domain;
 
 public class Aines {
-<<<<<<< HEAD
-
-=======
     
->>>>>>> 9f20f343b96d8ba68e700e2631178f186ff826ad
     private Integer id;
     private String nimi;
 
