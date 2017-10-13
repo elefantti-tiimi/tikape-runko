@@ -10,8 +10,8 @@ package tikape.runko.domain;
  * @author strajama
  */
 public class Pirtelo {
-    
-        private Integer id;
+
+    private Integer id;
     private String nimi;
 
     public Pirtelo(Integer id, String nimi) {

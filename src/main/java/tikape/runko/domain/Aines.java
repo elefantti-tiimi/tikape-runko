@@ -10,8 +10,8 @@ package tikape.runko.domain;
  * @author strajama
  */
 public class Aines {
-    
-        private Integer id;
+
+    private Integer id;
     private String nimi;
 
     public Aines(Integer id, String nimi) {
