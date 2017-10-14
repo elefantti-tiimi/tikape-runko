@@ -13,11 +13,17 @@ public class Pirtelo {
 
     private Integer id;
     private String nimi;
+    private String ohje; //vapaa tekstikenttä, pirtelön valmistusohje vapaamuotoisesti kirjoitettuna
+            //esim. "Sekoita kaikki ainekset keskenään, työnnä banaani korvaan ja nauti".
+    private Double hintaArvio; // Hakua varten, koska ainesten perusteella hakiessa hinta vaihtelee määristä riippuen       
 
-    public Pirtelo(Integer id, String nimi) {
+    public Pirtelo(Integer id, String nimi, String ohje, Double hintaArvio) {
         this.id = id;
         this.nimi = nimi;
+        this.ohje = ohje;
+        this.hintaArvio = hintaArvio;
     }
+
 
     public Integer getId() {
         return id;
@@ -35,4 +41,13 @@ public class Pirtelo {
         this.nimi = nimi;
     }
 
+    public String getOhje() {
+        return ohje;
+    }
+
+    public void setOhje(String ohje) {
+        this.ohje = ohje;
+    }
+
+    
 }
