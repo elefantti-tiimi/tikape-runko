@@ -18,16 +18,6 @@ public class Main {
 
         PirteloDao pirteloDao = new PirteloDao(database);
         AinesDao ainesDao = new AinesDao(database);
-        
-        List<Pirtelo> pirtelolista = new ArrayList<>();
-        
-        for (Pirtelo pirtelo: pirteloDao.findAll()) {
-            pirtelolista.add(pirtelo);
-        }
-        
-        for (Pirtelo pirtelo: pirteloDao.findAll()) {
-            System.out.println(pirtelo.getNimi() +" "+ pirtelo.getId());
-        }
 
         Spark.get("/", (req, res) -> {
             HashMap map = new HashMap<>();
