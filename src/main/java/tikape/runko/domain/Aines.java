@@ -54,14 +54,14 @@ public class Aines {
         this.maku = maku;
     }
 
-    public Aines(Integer id, String nimi, Double kaloriKg, Double kaloriKpl, Double hintaKg, Double hintaKpl, Ominaisuus maku) {
+    public Aines(Integer id, String nimi) { //, Double kaloriKg, Double kaloriKpl, Double hintaKg, Double hintaKpl, Ominaisuus maku) { perus-konstruktori, lisätään muut toiminnallisuudet myöhemmin)
         this.id = id;
         this.nimi = nimi;
-        this.kaloriKg = kaloriKg;
-        this.kaloriKpl = kaloriKpl;
-        this.hintaKg = hintaKg;
-        this.hintaKpl = hintaKpl;
-        this.maku = maku;
+        //this.kaloriKg = kaloriKg;
+        //this.kaloriKpl = kaloriKpl;
+        //this.hintaKg = hintaKg;
+        //this.hintaKpl = hintaKpl;
+        //this.maku = maku;
     }
 
     public Aines(Integer id, String nimi) {

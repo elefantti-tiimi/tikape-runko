@@ -10,9 +10,9 @@ import tikape.runko.domain.Aines;
 
 public class AinesDao implements Dao<Aines, Integer>{
 
-    private Tietokanta database;
+    private Database database;
 
-    public AinesDao(Tietokanta database) {
+    public AinesDao(Database database) {
         this.database = database;
     }
 
@@ -66,5 +66,18 @@ public class AinesDao implements Dao<Aines, Integer>{
     public void delete(Integer key) throws SQLException {
         // ei toteutettu
     }
+    
+    public void saveOrUpdate(Aines object) throws SQLException {
+        Connection conn = database.getConnection();
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO Aines(nimi= ?");
 
+        stmt.setString(1, object.getNimi());
+        stmt.executeUpdate();
+
+        stmt.close();
+        conn.close();
+
+    }
+    
+    
 }
