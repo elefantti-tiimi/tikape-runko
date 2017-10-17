@@ -67,7 +67,8 @@ public class AinesDao implements Dao<Aines, Integer>{
         // ei toteutettu
     }
     
-    public void saveOrUpdate(Aines object) throws SQLException {
+    @Override
+    public Aines saveOrUpdate(Aines object) throws SQLException {
         Connection conn = database.getConnection();
         PreparedStatement stmt = conn.prepareStatement("INSERT INTO Aines(nimi) VALUES(?)");
 
@@ -76,8 +77,30 @@ public class AinesDao implements Dao<Aines, Integer>{
 
         stmt.close();
         conn.close();
+        
+        Aines a = new Aines(findIdByName(object.getNimi()), object.getNimi());
+        return a;
 
     }
     
+    @Override
+    public Integer findIdByName(String name) throws SQLException {
+        Connection connection = database.getConnection();
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Aines WHERE nimi = ?");
+        stmt.setObject(1, name);
+
+        ResultSet rs = stmt.executeQuery();
+        boolean hasOne = rs.next();
+        if (!hasOne) {
+            return null;
+        }
+
+        Integer id = rs.getInt("id");
+        rs.close();
+        stmt.close();
+        connection.close();
+
+        return id;
+    }
     
 }

@@ -13,4 +13,6 @@ public interface Dao<T, K> {
     
     T saveOrUpdate(T object) throws SQLException;
     
+    Integer findIdByName(String name) throws SQLException;
+    
 }
