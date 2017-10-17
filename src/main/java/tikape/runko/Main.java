@@ -6,6 +6,8 @@ import spark.Spark;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 import tikape.runko.database.*;
 import tikape.runko.domain.*;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Main {
 
@@ -15,13 +17,13 @@ public class Main {
         database.init();
 
         PirteloDao pirteloDao = new PirteloDao(database);
+        AinesDao ainesDao = new AinesDao(database);
+        
+        List<Pirtelo> pirtelolista = new ArrayList<>();
         
         for (Pirtelo pirtelo: pirteloDao.findAll()) {
-            System.out.println(pirtelo.getNimi() +" "+ pirtelo.getId());
+            pirtelolista.add(pirtelo);
         }
-        
-        pirteloDao.delete(2);
-        pirteloDao.saveOrUpdate(new Pirtelo("Peruspirtelö"));
         
         for (Pirtelo pirtelo: pirteloDao.findAll()) {
             System.out.println(pirtelo.getNimi() +" "+ pirtelo.getId());
@@ -36,7 +38,7 @@ public class Main {
 
         Spark.get("/pirtelot", (req, res) -> {
             HashMap map = new HashMap<>();
-            map.put("pirtelo", pirteloDao.findAll());
+            map.put("pirtelot", pirtelolista);
 
             return new ModelAndView(map, "pirtelot");
         }, new ThymeleafTemplateEngine());

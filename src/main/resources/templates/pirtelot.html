@@ -8,12 +8,21 @@
 
     <body>
         <h1>hei!</h1>
-
+        
+        <p>Fantin pirtelövalikoima</p>
         <ol>
             <li th:each="pirtelo: ${pirtelot}">
-                <span th:text="${pirtelo.nimi}">Pirtelön nimi</span> <a th:href="${'/pirtelot/' + pirtelo.id}">linkki</a>
+                <span th:text="${pirtelo.getNimi()}">Pirtelön nimi</span>
             </li>
         </ol>
+        
+        <p>
+        <form method="POST" action="/pirtelot">
+            Lisää pirtelöresepti:<br/>
+            <input type="text" name="pirtelö"/><br/>
+            <input type="submit" value="Lisää pirtelö"/>
+        </form>
+        </p>
         
         <p>
             <a href="/raakaaineet"><button>Tästä tsekkaamaan raaka-aineita.</button></a><br/><br/>
