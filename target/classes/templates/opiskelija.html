@@ -7,10 +7,8 @@
     </head>
 
     <body>
-        <h1>&#x1f418; Tervetuloa fantin pirtelöbaariin! &#x1f418;</h1>
+        <h1>Hei <span th:text="${opiskelija.nimi}">opiskelija</span>!</h1>
 
-        <p>Ja .. <span th:text="${viesti}">jotain?</span></p>
-
-        <p><a href="/pirtelot">Tästä tsekkaamaan pirtelöitä.</a></p>
+        <p>Olet saapunut opiskelijan <span th:text="${opiskelija.nimi}">opiskelija</span> henkilökohtaiselle sivulle.</p>
     </body>
 </html>

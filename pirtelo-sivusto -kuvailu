@@ -1,0 +1,38 @@
+Pirtelö-sivustomme sisältää herkullisia pirtelöreseptejä, joista näkee pirtelön ainesosat, sekoitussuhteet ja kalorimäärän. Pirtelöreseptiä voi hakea joko yhden tai useamman suosikkiainesosan perusteella tai sulkemalla hausta ulos ainesosat, joista ei pidä tai joille on allerginen. Sivustolla on myös ainesosa-tietopankki, josta voi selata erilaisia ainesosia ja lisätä sinne uusia. Toisin kuin smoothie-draftissa, niin meidän pirtelösivustomme on selkeä ja eri sivuilla on selkeästi eroteltu, että mitä siellä tehdään eikä samassa paikassa syötetä montaa erilaista dataa. Sivustolla voi jättää arviointeja eri pirtelöohjeille ja sivuston ylläpitäjä saattaa vastata jotain yhteen arvioon. 
+
+Arviointi
+
+Pirtelölle voi antaa arviointeja pisteillä ja sanallisella palautteella. Yhdellä pirtelöllä on nolla tai monta arviointia. Arviointiin voi halutessaan vastata jotain.
+
+Hinta
+
+Tällä hetkellä sekä Aines-luokassa on kg- ja kpl-hinta ja Pirtelö-luokassa hinta-arvio. Aines-luokan hinnat eivät ehkä ole kovin realistinen vaihtoehto, koska oikeassa elämässä hinnat vaihtelevat paljon, mutta niillä saisi tehtyä hienoja “mitä kaikkea tarvitaan 9 euron banaanipirtelöön?” -hakuja. 
+
+Pirtelön hinta-arvio annetaan pirtelölle sen reseptiä tallettaessa ja siitä on se hyöty, että reseptiä hakiessa voi valita, että haluaako ns. premium-pirtelön vai mahdollisimman halpaa.
+
+Ominaisuus
+
+Ominaisuus on enum, joka tallennetaan lisättävällä ainesosalle. Tiedon voi tallentaa myös integerinä kunhan ohjelma osaa muuntaa sen sopivaksi ominaisuudeksi. Tällä hetkellä siellä on vain perusmaut, mutta periaatteessa ne voisivat olla mitä vain (kermainen, hedelmäinen, herukkainen, täyteläinen). Yhdellä aineksella on yksi ominaisuus ja ne (tai esim. kolme tärkeintä) luettelemalla voi kuvailla, että minkälainen pirtelö on kyseessä.
+
+Kalorit
+
+Kalorit on tuolla nyt erikseen Aineksessa per kg ja per kpl. Pirtelön kokonaiskalorimäärän saa laskemalla yhteen ainesten kalorit. Laitoin koodiin myös muita mitattavia ravintotietoja, jotka ihmisiä usein kiinnostaa, esim. kuidut.
+
+Ohje
+
+Pirtelö sisältää oman vapaasti syötettävän String-ohjeen. Lisäksi AinesPirtelössä on oma ohjeensa joka oliolle.
+
+
+Esimerkkituloste:
+
+Sitruunahönkäys [Pirtelo.nimi]
+hapan [Aines.ominaisuus], makea [Aines.ominaisuus], makea [Aines.ominaisuus]
+
+2 [AinesPirtelo.maara] kpl [AinesPirtelo.tyyppi] sitruuna [Aines] puristettuna [AinesPirtelo.ohje]
+5 [AinesPirtelo.maara] g [AinesPirtelo.tyyppi] sokeri [Aines] nestemäisessä muodossa [AinesPirtelo.ohje]
+1 [AinesPirtelo.maara] kpl [AinesPirtelo.tyyppi] jäätelöpuikko [Aines] sulatettuna [AinesPirtelo.ohje]
+
+Sekoita kaikki ainekset keskenään. Poista jäätelöpuikon tikku seoksesta ennen juomista. [Pirtelo.ohje]
+
+Arvosana: 4 [Arviointi.luokitus (keskiarvo laskettuna)]
+<ei sanallisia arviointeja> [Arviointi.Palaute]

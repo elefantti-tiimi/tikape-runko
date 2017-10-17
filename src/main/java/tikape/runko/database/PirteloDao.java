@@ -31,7 +31,7 @@ public class PirteloDao implements Dao<Pirtelo, Integer>{
         Integer id = rs.getInt("id");
         String nimi = rs.getString("nimi");
 
-        Pirtelo o = new Pirtelo(id, nimi);
+        Pirtelo o = new Pirtelo(1,"","",0.0);
 
         rs.close();
         stmt.close();
@@ -52,7 +52,7 @@ public class PirteloDao implements Dao<Pirtelo, Integer>{
             Integer id = rs.getInt("id");
             String nimi = rs.getString("nimi");
 
-            pirtelot.add(new Pirtelo(id, nimi));
+        //    pirtelot.add(new Pirtelo(id, nimi));
         }
 
         rs.close();
