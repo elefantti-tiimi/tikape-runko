@@ -64,7 +64,13 @@ public class PirteloDao implements Dao<Pirtelo, Integer>{
 
     @Override
     public void delete(Integer key) throws SQLException {
-        // ei toteutettu
+        Connection connection = database.getConnection();
+        PreparedStatement stmt = connection.prepareStatement("DELETE FROM Pirtelo WHERE id = ?");
+        stmt.setObject(1, key);
+        
+        stmt.execute();
+        stmt.close();
+        connection.close();
     }
 
 }
