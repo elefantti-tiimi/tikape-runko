@@ -38,16 +38,23 @@ public class Main {
 
         Spark.get("/pirtelot", (req, res) -> {
             HashMap map = new HashMap<>();
-            map.put("pirtelot", pirtelolista);
+            map.put("pirtelot", pirteloDao.findAll());
 
             return new ModelAndView(map, "pirtelot");
         }, new ThymeleafTemplateEngine());
+        
+        Spark.post("/pirtelot", (req, res) -> {
+            String pirtelo = req.queryParams("pirtelö");
+            pirteloDao.saveOrUpdate(new Pirtelo(pirtelo));
+            res.redirect("/pirtelot");
+            return "";
+        });
 
         Spark.get("/raakaaineet", (req, res) -> {
             HashMap map = new HashMap<>();
             map.put("??", pirteloDao.findOne(Integer.parseInt(req.params("id"))));
 
-            return new ModelAndView(map, "opiskelija");
+            return new ModelAndView(map, "raaka-aineet");
         }, new ThymeleafTemplateEngine());
     }
 }
