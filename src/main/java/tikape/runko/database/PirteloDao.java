@@ -10,9 +10,9 @@ import tikape.runko.domain.Pirtelo;
 
 public class PirteloDao implements Dao<Pirtelo, Integer>{
     
-    private Tietokanta database;
+    private Database database;
 
-    public PirteloDao(Tietokanta database) {
+    public PirteloDao(Database database) {
         this.database = database;
     }
 
@@ -31,7 +31,7 @@ public class PirteloDao implements Dao<Pirtelo, Integer>{
         Integer id = rs.getInt("id");
         String nimi = rs.getString("nimi");
 
-        Pirtelo o = new Pirtelo(1,"","",0.0);
+        Pirtelo o = new Pirtelo(id,nimi);//,"",0.0);
 
         rs.close();
         stmt.close();
@@ -71,6 +71,19 @@ public class PirteloDao implements Dao<Pirtelo, Integer>{
         stmt.execute();
         stmt.close();
         connection.close();
+    }
+    
+    @Override
+    public void saveOrUpdate(Pirtelo object) throws SQLException {
+        Connection conn = database.getConnection();
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO Pirtelo(nimi) VALUES(?)");
+
+        stmt.setString(1, object.getNimi());
+        stmt.executeUpdate();
+
+        stmt.close();
+        conn.close();
+
     }
 
 }

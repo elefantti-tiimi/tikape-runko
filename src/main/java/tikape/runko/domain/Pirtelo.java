@@ -8,11 +8,11 @@ public class Pirtelo {
             //esim. "Sekoita kaikki ainekset keskenään, työnnä banaani korvaan ja nauti".
     private Double hintaArvio; // Hakua varten, koska ainesten perusteella hakiessa hinta vaihtelee määristä riippuen       
 
-    public Pirtelo(Integer id, String nimi, String ohje, Double hintaArvio) {
+    public Pirtelo(Integer id, String nimi) {//, String ohje, Double hintaArvio) {
         this.id = id;
         this.nimi = nimi;
-        this.ohje = ohje;
-        this.hintaArvio = hintaArvio;
+        //this.ohje = ohje;
+        //this.hintaArvio = hintaArvio;
     }
 
 

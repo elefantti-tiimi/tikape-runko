@@ -44,7 +44,7 @@ public class AinesDao implements Dao<Aines, Integer>{
     public List<Aines> findAll() throws SQLException {
 
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Opiskelija");
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Aines");
 
         ResultSet rs = stmt.executeQuery();
         List<Aines> ainekset = new ArrayList<>();
@@ -69,7 +69,7 @@ public class AinesDao implements Dao<Aines, Integer>{
     
     public void saveOrUpdate(Aines object) throws SQLException {
         Connection conn = database.getConnection();
-        PreparedStatement stmt = conn.prepareStatement("INSERT INTO Aines(nimi= ?");
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO Aines(nimi) VALUES(?)");
 
         stmt.setString(1, object.getNimi());
         stmt.executeUpdate();
