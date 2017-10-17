@@ -14,6 +14,13 @@ public class Pirtelo {
         //this.ohje = ohje;
         //this.hintaArvio = hintaArvio;
     }
+    
+    public Pirtelo(Integer id, String nimi) {//, String ohje, Double hintaArvio) {
+        this.id = id;
+        this.nimi = nimi;
+        //this.ohje = ohje;
+        //this.hintaArvio = hintaArvio;
+    }
 
 
     public Integer getId() {

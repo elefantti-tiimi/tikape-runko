@@ -74,7 +74,7 @@ public class PirteloDao implements Dao<Pirtelo, Integer>{
     }
     
     @Override
-    public void saveOrUpdate(Pirtelo object) throws SQLException {
+    public Pirtelo saveOrUpdate(Pirtelo object) throws SQLException {
         Connection conn = database.getConnection();
         PreparedStatement stmt = conn.prepareStatement("INSERT INTO Pirtelo(nimi) VALUES(?)");
 
@@ -84,9 +84,28 @@ public class PirteloDao implements Dao<Pirtelo, Integer>{
         stmt.close();
         conn.close();
         
-        //p = new Pirtelo(object.getNimi());
-        //return p
+        Pirtelo p = new Pirtelo(findIdByName(object.getNimi()), object.getNimi());
+        return p;
 
+    }
+    
+    public Integer findIdByName(String name) throws SQLException {
+        Connection connection = database.getConnection();
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Pirtelo WHERE nimi = ?");
+        stmt.setObject(1, name);
+
+        ResultSet rs = stmt.executeQuery();
+        boolean hasOne = rs.next();
+        if (!hasOne) {
+            return null;
+        }
+
+        Integer id = rs.getInt("id");
+        rs.close();
+        stmt.close();
+        connection.close();
+
+        return id;
     }
 
 }
