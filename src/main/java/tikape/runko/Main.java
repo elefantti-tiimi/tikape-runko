@@ -27,7 +27,7 @@ public class Main {
             System.out.println(pirtelo.getNimi() +" "+ pirtelo.getId());
         }
 
-        Spark.get("*", (req, res) -> {
+        Spark.get("/", (req, res) -> {
             HashMap map = new HashMap<>();
             map.put("viesti", "tervehdys");
 
