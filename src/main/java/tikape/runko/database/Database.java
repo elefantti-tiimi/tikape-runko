@@ -43,6 +43,7 @@ public class Database {
         lista.add("CREATE TABLE Aines (id integer PRIMARY KEY, nimi varchar(255));");
         lista.add("INSERT INTO Pirtelo (nimi) VALUES ('peruspirtelö');");
         lista.add("INSERT INTO Aines (nimi) VALUES ('jäätelö');");
+        lista.add("INSERT INTO Pirtelo (nimi) VALUES ('muupirtelö');");
 
         return lista;
     }

@@ -52,7 +52,7 @@ public class PirteloDao implements Dao<Pirtelo, Integer>{
             Integer id = rs.getInt("id");
             String nimi = rs.getString("nimi");
 
-        //    pirtelot.add(new Pirtelo(id, nimi));
+            pirtelot.add(new Pirtelo(id, nimi));
         }
 
         rs.close();
@@ -83,6 +83,9 @@ public class PirteloDao implements Dao<Pirtelo, Integer>{
 
         stmt.close();
         conn.close();
+        
+        //p = new Pirtelo(object.getNimi());
+        //return p
 
     }
 

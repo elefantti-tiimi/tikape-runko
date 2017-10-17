@@ -64,11 +64,6 @@ public class Aines {
         //this.maku = maku;
     }
 
-    public Aines(Integer id, String nimi) {
-        this.id = id;
-        this.nimi = nimi;
-    }
-
     public Integer getId() {
         return id;
     }
