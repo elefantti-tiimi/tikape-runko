@@ -8,8 +8,20 @@
 
     <body>
         <h1>Raaka-aineet</h1>
-
-        <p>Ja .. <span th:text="${viesti}">jotain?</span></p>
+        
+        <ol>
+            <li th:each="aines: ${aineet}">
+                <span th:text="${aines.getNimi()}">Raaka-aineen nimi</span>
+            </li>
+        </ol>
+        
+        <p>
+        <form method="POST" action="/raakaaineet">
+            Lisää raaka-aine:<br/>
+            <input type="text" name="aines"/><br/>
+            <input type="submit" value="Lisää raaka-aine"/>
+        </form>
+        </p>
 
         <p>
             <a href="/pirtelot"><button>Tästä tsekkaamaan pirtelöitä.</button></a><br/><br/>

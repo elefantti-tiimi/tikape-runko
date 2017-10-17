@@ -63,6 +63,10 @@ public class Aines {
         //this.hintaKpl = hintaKpl;
         //this.maku = maku;
     }
+    
+    public Aines(String nimi) {
+        this.nimi = nimi;
+    }
 
     public Integer getId() {
         return id;

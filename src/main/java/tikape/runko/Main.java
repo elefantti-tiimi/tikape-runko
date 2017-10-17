@@ -52,9 +52,16 @@ public class Main {
 
         Spark.get("/raakaaineet", (req, res) -> {
             HashMap map = new HashMap<>();
-            map.put("??", pirteloDao.findOne(Integer.parseInt(req.params("id"))));
+            map.put("aineet", ainesDao.findAll());
 
-            return new ModelAndView(map, "raaka-aineet");
+            return new ModelAndView(map, "raakaaineet");
         }, new ThymeleafTemplateEngine());
+        
+        Spark.post("/raakaaineet", (req, res) -> {
+            String aines = req.queryParams("aines");
+            ainesDao.saveOrUpdate(new Aines(aines));
+            res.redirect("/raakaaineet");
+            return "";
+        });
     }
 }
