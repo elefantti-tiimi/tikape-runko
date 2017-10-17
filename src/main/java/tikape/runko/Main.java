@@ -6,8 +6,8 @@ import spark.Spark;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 import tikape.runko.database.*;
 import tikape.runko.domain.*;
-import java.util.List;
-import java.util.ArrayList;
+//import java.util.List;
+//import java.util.ArrayList;
 
 public class Main {
 

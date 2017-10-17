@@ -4,9 +4,43 @@
     <head>
         <title>Raaka-aineet</title>
         <meta charset="utf-8" />
+        <style>body {margin:0;}
+
+            .topnav {
+                overflow: hidden;
+                background-color: #333;
+            }
+
+            .topnav a {
+                float: left;
+                display: block;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 17px;
+            }
+
+            .topnav a:hover {
+                background-color: #ddd;
+                color: black;
+            }
+
+            .topnav a.active {
+                background-color: #4CAF50;
+                color: white;
+            }
+        </style>
+
     </head>
 
     <body>
+        
+        <div class="topnav">
+            <a href="/">Etusivu</a>
+            <a href="/pirtelot">Pirtelöt</a>
+            <a class="active" href="/raakaaineet">Raaka-aineet</a>
+        </div>
         <h1>Raaka-aineet</h1>
         
         <ol>
@@ -21,9 +55,5 @@
             <input type="submit" value="Lisää raaka-aine"/>
         </form>
 
-        <p>
-            <a href="/pirtelot"><button>Tästä tsekkaamaan pirtelöitä.</button></a><br/><br/>
-            <a href="/"><button>Tästä etusivulle.</button></a>
-        </p>
     </body>
 </html>
