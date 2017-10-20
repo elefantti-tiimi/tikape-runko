@@ -46,6 +46,7 @@ public class Main {
             Pirtelo pirtelo = pirteloDao.findOne(Integer.parseInt(req.params("id")));
             map.put("pirtelo", pirtelo);
             map.put("raakaaineet", pirtelo.getAinekset());
+            map.put("ainekset", ainesDao.findAll());
 
             return new ModelAndView(map, "pirtelo");
         }, new ThymeleafTemplateEngine());

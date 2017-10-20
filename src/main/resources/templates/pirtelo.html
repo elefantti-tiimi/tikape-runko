@@ -40,18 +40,26 @@
             <a href="/raakaaineet">Raaka-aineet</a>
         </div>
         
-        <h1 th:text="${pirtelo.getNimi()}">Pirtel&ouml;n nimi</h1>
+        <h1 th:text="${pirtelo.nimi}">Pirtel&ouml;n nimi</h1>
 
-        <p>Olet saapunut pirtel&ouml;n <span th:text="${pirtelo.getNimi()}">pirtelo
+        <p>Olet saapunut pirtel&ouml;n <span th:text="${pirtelo.nimi}">pirtelo
             </span> henkil&ouml;kohtaiselle sivulle.<br/><br/>Ainekset:</p>
         
         <ol>
             <li th:each="aines: ${raakaaineet}">
-                <span th:text="${aines.getNimi()}">Pirtelon aines</span>
+                <span th:text="${aines.nimi}">Pirtelon aines</span>
             </li>
         </ol>
         
-        <form method="POST" th:action="'/pirtelot/' + ${pirtelo.getId()}">
+        <form method="POST" th:action="'/pirtelot/' + ${pirtelo.id}">
+            <select th:field="*{aines.id}">
+                <option th:each="aines : ${ainekset}" 
+                th:value="${aines.id}" 
+                th:text="${aines.nimi}">lisää aines</option>
+                <input type="submit" value="lisää pirtel&ouml;&ouml;n"/>
+            </select>
+        </form>
+        <form method="POST" th:action="'/pirtelot/' + ${pirtelo.id}">
             <input type="submit" value="Poista pirtel&ouml;"/>
         </form>
     </body>
