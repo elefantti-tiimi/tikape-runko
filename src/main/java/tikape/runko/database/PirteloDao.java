@@ -51,8 +51,10 @@ public class PirteloDao implements Dao<Pirtelo, Integer>{
         while (rs.next()) {
             Integer id = rs.getInt("id");
             String nimi = rs.getString("nimi");
-
-            pirtelot.add(new Pirtelo(id, nimi));
+            
+            Pirtelo uusi = new Pirtelo(id, nimi);
+            
+            pirtelot.add(uusi);
         }
 
         rs.close();
@@ -106,6 +108,27 @@ public class PirteloDao implements Dao<Pirtelo, Integer>{
         connection.close();
 
         return id;
+    }
+    
+    public List<Pirtelo> findAllForAines(Integer haettavaId) throws SQLException {
+
+        Connection connection = database.getConnection();
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM AinesPirtelo WHERE aines_id = ?");
+        stmt.setInt(1, haettavaId);
+
+        ResultSet rs = stmt.executeQuery();
+        List<Pirtelo> ainekset = new ArrayList<>();
+        while (rs.next()) {
+            Integer pirteloId = rs.getInt("pirtelo_id");
+            
+            ainekset.add(this.findOne(pirteloId));
+        }
+
+        rs.close();
+        stmt.close();
+        connection.close();
+
+        return ainekset;
     }
 
 }

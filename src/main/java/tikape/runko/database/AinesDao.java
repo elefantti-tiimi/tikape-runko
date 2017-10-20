@@ -62,6 +62,27 @@ public class AinesDao implements Dao<Aines, Integer>{
         return ainekset;
     }
 
+    public List<Aines> findAllForPirtelo(Integer haettavaId) throws SQLException {
+
+        Connection connection = database.getConnection();
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM AinesPirtelo WHERE pirtelo_id = ?");
+        stmt.setInt(1, haettavaId);
+
+        ResultSet rs = stmt.executeQuery();
+        List<Aines> ainekset = new ArrayList<>();
+        while (rs.next()) {
+            Integer ainesId = rs.getInt("aines_id");
+            
+            ainekset.add(this.findOne(ainesId));
+        }
+
+        rs.close();
+        stmt.close();
+        connection.close();
+
+        return ainekset;
+    }
+    
     @Override
     public void delete(Integer key) throws SQLException {
         // ei toteutettu
