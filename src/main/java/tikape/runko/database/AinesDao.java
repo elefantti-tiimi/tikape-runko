@@ -99,6 +99,11 @@ public class AinesDao implements Dao<Aines, Integer>{
     @Override
     public Aines saveOrUpdate(Aines object) throws SQLException {
         Connection conn = database.getConnection();
+        
+        if(this.findOne(object.getId()) != null) {
+            this.delete(object.getId());
+        }
+        
         PreparedStatement stmt = conn.prepareStatement("INSERT INTO Aines(nimi) VALUES(?)");
 
         stmt.setString(1, object.getNimi());
