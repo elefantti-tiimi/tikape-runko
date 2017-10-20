@@ -30,6 +30,7 @@ public class Main {
         Spark.get("/pirtelot", (req, res) -> {
             HashMap map = new HashMap<>();
             map.put("pirtelot", pirteloDao.findAll());
+            map.put("ainekset", ainesDao.findAll());
 
             return new ModelAndView(map, "pirtelot");
         }, new ThymeleafTemplateEngine());
@@ -37,6 +38,26 @@ public class Main {
         Spark.post("/pirtelot", (req, res) -> {
             String pirtelo = req.queryParams("pirtelo");
             pirteloDao.saveOrUpdate(new Pirtelo(pirtelo));
+            res.redirect("/pirtelot");
+            return "";
+        });
+        
+        Spark.post("/pirtelot/aines", (req, res) -> {
+            String pirtelo = req.queryParams("pirtelot");
+            String aines = req.queryParams("ainekset");
+            
+            System.out.println(pirtelo);
+            System.out.println(aines);
+            
+            Pirtelo p = pirteloDao.findOne(pirteloDao.findIdByName(pirtelo));
+            Aines a = ainesDao.findOne(ainesDao.findIdByName(aines));
+            
+            p.getAinekset().add(a);
+            a.getPirtelot().add(p);
+            
+            pirteloDao.saveOrUpdate(p);
+            ainesDao.saveOrUpdate(a);
+            
             res.redirect("/pirtelot");
             return "";
         });
