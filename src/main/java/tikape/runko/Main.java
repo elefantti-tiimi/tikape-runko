@@ -42,15 +42,15 @@ public class Main {
             return "";
         });
         
-        Spark.post("/pirtelot/aines", (req, res) -> {
-            String pirtelo = req.queryParams("pirtelot");
-            String aines = req.queryParams("ainekset");
+        Spark.post("/pirtelot/:id/aines", (req, res) -> {
+            int pirteloId = Integer.parseInt(req.params("id"));
+            int ainesId = Integer.parseInt(req.queryParams("ainesid"));
             
-            System.out.println(pirtelo);
-            System.out.println(aines);
+            System.out.println(pirteloDao.findOne(pirteloId));
+            System.out.println(ainesDao.findOne(ainesId));
             
-            Pirtelo p = pirteloDao.findOne(pirteloDao.findIdByName(pirtelo));
-            Aines a = ainesDao.findOne(ainesDao.findIdByName(aines));
+            Pirtelo p = pirteloDao.findOne(pirteloId);
+            Aines a = ainesDao.findOne(ainesId);
             
             p.getAinekset().add(a);
             a.getPirtelot().add(p);
@@ -58,7 +58,7 @@ public class Main {
             pirteloDao.saveOrUpdate(p);
             ainesDao.saveOrUpdate(a);
             
-            res.redirect("/pirtelot");
+            res.redirect("/pirtelot/:id");
             return "";
         });
         
