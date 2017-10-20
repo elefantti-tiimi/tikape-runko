@@ -50,5 +50,9 @@
                 <span th:text="${aines.getNimi()}">Pirtelon aines</span>
             </li>
         </ol>
+        
+        <form method="POST" th:action="'/pirtelot/' + ${pirtelo.getId()}">
+            <input type="submit" value="Poista pirtel&ouml;"/>
+        </form>
     </body>
 </html>

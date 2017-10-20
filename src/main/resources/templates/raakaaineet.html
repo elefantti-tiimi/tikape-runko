@@ -46,7 +46,7 @@
         <ol>
             <li th:each="aines: ${aineet}">
                 <span th:text="${aines.getNimi()}">Raaka-aineen nimi</span>
-                (<a th:href="'raakaaineet/' + ${aines.getId()}">poista</a>)
+                (<a th:href="'raakaaineet/' + ${aines.getId()}">lis&auml;tietoja</a>)
 <!--                (<form method="POST" action="poista">
                     <input type="submit" value="Poista"/>
                 </form>)-->

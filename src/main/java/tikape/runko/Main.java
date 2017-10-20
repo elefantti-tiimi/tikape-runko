@@ -49,6 +49,12 @@ public class Main {
 
             return new ModelAndView(map, "pirtelo");
         }, new ThymeleafTemplateEngine());
+        
+        Spark.post("/pirtelot/:id", (req, res) -> {
+            pirteloDao.delete(Integer.parseInt(req.params("id")));
+            res.redirect("/pirtelot");
+            return "";
+        });
 
         Spark.get("/raakaaineet", (req, res) -> {
             HashMap map = new HashMap<>();
@@ -72,7 +78,7 @@ public class Main {
             return new ModelAndView(map, "aines");
         }, new ThymeleafTemplateEngine());
         
-        Spark.post("/raakaaineet/", (req, res) -> {
+        Spark.post("/raakaaineet/:id", (req, res) -> {
             ainesDao.delete(Integer.parseInt(req.params("id")));
             res.redirect("/raakaaineet");
             return "";
