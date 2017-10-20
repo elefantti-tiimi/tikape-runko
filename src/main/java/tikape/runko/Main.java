@@ -59,7 +59,7 @@ public class Main {
             //tuplaa liitostaulun, ei vielä valmis
             //ainesDao.saveOrUpdate(a);
             
-            res.redirect("/pirtelot/:id");
+            res.redirect("/pirtelot/" + pirteloId);
             return "";
         });
         
