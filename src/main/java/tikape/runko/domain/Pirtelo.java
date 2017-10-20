@@ -1,5 +1,6 @@
 package tikape.runko.domain;
 
+//toistaiseksi käytetään vain nimeä ja id:tä, lisää muut muuttujat konstruktoreihin myöhemmin
 public class Pirtelo {
 
     private Integer id;
