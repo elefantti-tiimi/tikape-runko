@@ -79,6 +79,12 @@ public class PirteloDao implements Dao<Pirtelo, Integer>{
     @Override
     public Pirtelo saveOrUpdate(Pirtelo object) throws SQLException {
         Connection conn = database.getConnection();
+        
+        if(this.findOne(object.getId()) != null) {
+            this.delete(object.getId());
+        }
+        
+        
         PreparedStatement stmt = conn.prepareStatement("INSERT INTO Pirtelo(nimi) VALUES(?)");
 
         stmt.setString(1, object.getNimi());

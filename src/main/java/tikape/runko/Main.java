@@ -56,7 +56,8 @@ public class Main {
             a.getPirtelot().add(p);
             
             pirteloDao.saveOrUpdate(p);
-            ainesDao.saveOrUpdate(a);
+            //tuplaa liitostaulun, ei vielä valmis
+            //ainesDao.saveOrUpdate(a);
             
             res.redirect("/pirtelot/:id");
             return "";
