@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import tikape.runko.domain.Aines;
+import tikape.runko.domain.Pirtelo;
 
 public class AinesDao implements Dao<Aines, Integer>{
 
@@ -61,26 +62,26 @@ public class AinesDao implements Dao<Aines, Integer>{
 
         return ainekset;
     }
-
-    public List<Aines> findAllForPirtelo(Integer haettavaId) throws SQLException {
+    
+    public ArrayList<Pirtelo> findAllForAines(Integer haettavaId) throws SQLException {
 
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM AinesPirtelo WHERE pirtelo_id = ?");
+        PirteloDao pirteloDAO = new PirteloDao(this.database);
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM AinesPirtelo WHERE aines_id = ?");
         stmt.setInt(1, haettavaId);
 
         ResultSet rs = stmt.executeQuery();
-        List<Aines> ainekset = new ArrayList<>();
+        ArrayList<Pirtelo> pirtelo = new ArrayList<>();
         while (rs.next()) {
-            Integer ainesId = rs.getInt("aines_id");
-            
-            ainekset.add(this.findOne(ainesId));
+            Integer ainesId = rs.getInt("pirtelo_id");
+            pirtelo.add(pirteloDAO.findOne(ainesId));
         }
 
         rs.close();
         stmt.close();
         connection.close();
 
-        return ainekset;
+        return pirtelo;
     }
     
     @Override

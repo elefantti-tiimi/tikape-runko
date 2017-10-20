@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import tikape.runko.domain.Aines;
 import tikape.runko.domain.Pirtelo;
 
 public class PirteloDao implements Dao<Pirtelo, Integer>{
@@ -86,7 +87,10 @@ public class PirteloDao implements Dao<Pirtelo, Integer>{
         stmt.close();
         conn.close();
         
-        Pirtelo p = new Pirtelo(findIdByName(object.getNimi()), object.getNimi());
+        
+        Integer uusiId = findIdByName(object.getNimi());
+        Pirtelo p = new Pirtelo(uusiId, object.getNimi());
+        p.setAinekset(this.findAllForPirtelo(uusiId));
         return p;
 
     }
@@ -110,18 +114,18 @@ public class PirteloDao implements Dao<Pirtelo, Integer>{
         return id;
     }
     
-    public List<Pirtelo> findAllForAines(Integer haettavaId) throws SQLException {
+    public ArrayList<Aines> findAllForPirtelo(Integer haettavaId) throws SQLException {
 
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM AinesPirtelo WHERE aines_id = ?");
+        AinesDao ainesDAO = new AinesDao(this.database);
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM AinesPirtelo WHERE pirtelo_id = ?");
         stmt.setInt(1, haettavaId);
 
         ResultSet rs = stmt.executeQuery();
-        List<Pirtelo> ainekset = new ArrayList<>();
+        ArrayList<Aines> ainekset = new ArrayList<>();
         while (rs.next()) {
-            Integer pirteloId = rs.getInt("pirtelo_id");
-            
-            ainekset.add(this.findOne(pirteloId));
+            Integer ainesId = rs.getInt("aines_id");
+            ainekset.add(ainesDAO.findOne(ainesId));
         }
 
         rs.close();
