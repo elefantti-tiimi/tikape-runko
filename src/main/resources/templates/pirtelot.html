@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
     <head>
-        <title>Pirtelölista</title>
+        <title>Pirtel&ouml;lista</title>
         <meta charset="utf-8" />
         <style>body {margin:0;}
 
@@ -38,23 +38,25 @@
         
         <div class="topnav">
             <a href="/">Etusivu</a>
-            <a class="active" href="/pirtelot">Pirtelöt</a>
+            <a class="active" href="/pirtelot">Pirtel&ouml;t</a>
             <a href="/raakaaineet">Raaka-aineet</a>
         </div>
         
-        <h1>Pirtelöt</h1>
+        <h1>Pirtel&ouml;t</h1>
         
-        <p>Fantin pirtelövalikoima</p>
+        <p>Fantin pirtel&ouml;valikoima</p>
         <ol>
             <li th:each="pirtelo: ${pirtelot}">
-                <span th:text="${pirtelo.getNimi()}">Pirtelön nimi</span>
+                <a th:href="'pirtelot/' + ${pirtelo.getId()}">
+                <span th:text="${pirtelo.getNimi()}">Pirtel&ouml;n nimi</span>
+                </a>
             </li>
         </ol>
         
         <form method="POST" action="/pirtelot">
-            Lisää pirtelöresepti:<br/>
+            Lis&auml;&auml; pirtel&ouml;resepti:<br/>
             <input type="text" name="pirtelö"/><br/>
-            <input type="submit" value="Lisää pirtelö"/>
+            <input type="submit" value="Lis&auml;&auml; pirtel&ouml;"/>
         </form>
         
     </body>

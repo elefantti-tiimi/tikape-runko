@@ -39,6 +39,15 @@ public class Main {
             res.redirect("/pirtelot");
             return "";
         });
+        
+        Spark.get("/pirtelot/:id", (req, res) -> {
+            HashMap map = new HashMap<>();
+            Pirtelo pirtelo = pirteloDao.findOne(Integer.parseInt(req.params("id")));
+            map.put("pirtelo", pirtelo);
+            map.put("raakaaineet", pirtelo.getAinekset());
+
+            return new ModelAndView(map, "pirtelo");
+        }, new ThymeleafTemplateEngine());
 
         Spark.get("/raakaaineet", (req, res) -> {
             HashMap map = new HashMap<>();
