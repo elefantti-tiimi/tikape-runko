@@ -50,7 +50,7 @@ public class Main {
             System.out.println(aines);
             
             Pirtelo p = pirteloDao.findOne(pirteloDao.findIdByName(pirtelo));
-            Aines a = ainesDao.findOne(ainesDao.findIdByName(pirtelo));
+            Aines a = ainesDao.findOne(ainesDao.findIdByName(aines));
             
             p.getAinekset().add(a);
             a.getPirtelot().add(p);

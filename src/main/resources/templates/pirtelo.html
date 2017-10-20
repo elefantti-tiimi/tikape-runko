@@ -51,14 +51,14 @@
             </li>
         </ol>
         
-        <form method="POST" th:action="'/pirtelot/' + ${pirtelo.id}">
+<!--        <form method="POST" th:action="'/pirtelot/' + ${pirtelo.id}">
             <select th:field="*{aines.id}">
                 <option th:each="aines : ${ainekset}" 
                 th:value="${aines.id}" 
                 th:text="${aines.nimi}">lisää aines</option>
                 <input type="submit" value="lisää pirtel&ouml;&ouml;n"/>
             </select>
-        </form>
+        </form>-->
         <form method="POST" th:action="'/pirtelot/' + ${pirtelo.id}">
             <input type="submit" value="Poista pirtel&ouml;"/>
         </form>
