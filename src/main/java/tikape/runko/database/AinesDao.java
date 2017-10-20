@@ -33,6 +33,7 @@ public class AinesDao implements Dao<Aines, Integer>{
         String nimi = rs.getString("nimi");
 
         Aines o = new Aines(id, nimi);
+        o.setPirtelot(this.findAllForAines(id));
 
         rs.close();
         stmt.close();
@@ -98,9 +99,25 @@ public class AinesDao implements Dao<Aines, Integer>{
         stmt.executeUpdate();
 
         stmt.close();
+        
+        if (!object.getPirtelot().isEmpty()) {
+            for (int i = 0; i < object.getPirtelot().size(); i++) {
+                PreparedStatement stmt2 = conn.prepareStatement("INSERT INTO AinesPirtelo(pirtelo_id, aines_id) VALUES(?,?)");
+
+                stmt2.setInt(1, object.getPirtelot().get(i).getId());
+                stmt2.setInt(2, object.getId());
+
+                stmt2.executeUpdate();
+
+                stmt2.close();
+            }
+        }
+        
         conn.close();
         
-        Aines a = new Aines(findIdByName(object.getNimi()), object.getNimi());
+        Integer uusiId = findIdByName(object.getNimi());
+        Aines a = new Aines(uusiId, object.getNimi());
+        a.setPirtelot(this.findAllForAines(uusiId));
         return a;
 
     }

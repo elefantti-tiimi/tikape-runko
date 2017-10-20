@@ -85,6 +85,20 @@ public class PirteloDao implements Dao<Pirtelo, Integer>{
         stmt.executeUpdate();
 
         stmt.close();
+        
+        if (!object.getAinekset().isEmpty()) {
+            for (int i = 0; i < object.getAinekset().size(); i++) {
+                PreparedStatement stmt2 = conn.prepareStatement("INSERT INTO AinesPirtelo(aines_id, pirtelo_id) VALUES(?,?)");
+
+                stmt2.setInt(1, object.getAinekset().get(i).getId());
+                stmt2.setInt(2, object.getId());
+
+                stmt2.executeUpdate();
+
+                stmt2.close();
+            }
+        }
+        
         conn.close();
         
         
