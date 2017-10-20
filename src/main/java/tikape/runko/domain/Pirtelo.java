@@ -37,6 +37,10 @@ public class Pirtelo {
     public void setAinekset(ArrayList<Aines> ainekset) {
         this.ainekset = ainekset;
     }
+    
+    public void addAines(Aines aines) {
+        ainekset.add(aines);
+    }
 
     public Integer getId() {
         return id;
