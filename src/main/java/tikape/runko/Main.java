@@ -19,6 +19,7 @@ public class Main {
 
         PirteloDao pirteloDao = new PirteloDao(database);
         AinesDao ainesDao = new AinesDao(database);
+        AinesPirteloDao ainesPirteloDao = new AinesPirteloDao(database);
 
         Spark.get("/", (req, res) -> {
             HashMap map = new HashMap<>();
@@ -73,9 +74,15 @@ public class Main {
             return new ModelAndView(map, "pirtelo");
         }, new ThymeleafTemplateEngine());
         
-        Spark.post("/pirtelot/:id", (req, res) -> {
-            pirteloDao.delete(Integer.parseInt(req.params("id")));
-            res.redirect("/pirtelot");
+        Spark.post("/pirtelo/:id", (req, res) -> {
+            Integer pirteloId = Integer.parseInt(req.params(":id"));
+            Integer ainesId = Integer.parseInt(req.queryParams("ainesId"));
+            Integer lkm = Integer.parseInt(req.queryParams("lkm"));
+  
+            AinesPirtelo ap = new AinesPirtelo(pirteloId, ainesId, lkm);
+            ainesPirteloDao.saveOrUpdate(ap);
+
+            res.redirect("/pirtelo/:id");
             return "";
         });
 

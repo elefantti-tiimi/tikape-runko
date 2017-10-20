@@ -10,11 +10,15 @@ public class AinesPirtelo {
     // näkyy sivulla ohjeena ja on vapaa teksti
     private String ohje;
     //esimerkkituloste: "5 (maara) kpl(tyyppi) [banaani] saappaan alla poljettuna(ohje)"
+    private Integer ainesId;
+    private Integer pirteloId;
 
-    public AinesPirtelo(int maara, int tyyppi, String ohje) {
+    public AinesPirtelo(Integer pirteloId, Integer ainesID, int maara) {//, int tyyppi, String ohje) {
+        this.pirteloId = pirteloId;
+        this.ainesId = ainesId;
         this.maara = maara;
-        this.tyyppi = tyyppi;
-        this.ohje = ohje;
+        //this.tyyppi = tyyppi;
+        //this.ohje = ohje;
     }
 
     public int getMaara() {
@@ -39,6 +43,14 @@ public class AinesPirtelo {
 
     public void setOhje(String ohje) {
         this.ohje = ohje;
+    }
+    
+    public Integer getAinesId() {
+        return ainesId;
+    }
+    
+    public Integer getPirteloId() {
+        return pirteloId;
     }
     
     
