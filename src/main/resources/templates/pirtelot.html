@@ -47,15 +47,14 @@
         <p>Fantin pirtel&ouml;valikoima</p>
         <ol>
             <li th:each="pirtelo: ${pirtelot}">
-                <a th:href="'pirtelot/' + ${pirtelo.getId()}">
                 <span th:text="${pirtelo.getNimi()}">Pirtel&ouml;n nimi</span>
-                </a>
+                (<a th:href="'pirtelot/' + ${pirtelo.getId()}">lis&auml;tietoja</a>)
             </li>
         </ol>
         
         <form method="POST" action="/pirtelot">
             Lis&auml;&auml; pirtel&ouml;resepti:<br/>
-            <input type="text" name="pirtelö"/><br/>
+            <input type="text" name="pirtelo"/><br/>
             <input type="submit" value="Lis&auml;&auml; pirtel&ouml;"/>
         </form>
         

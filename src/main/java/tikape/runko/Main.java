@@ -35,7 +35,7 @@ public class Main {
         }, new ThymeleafTemplateEngine());
         
         Spark.post("/pirtelot", (req, res) -> {
-            String pirtelo = req.queryParams("pirtelö");
+            String pirtelo = req.queryParams("pirtelo");
             pirteloDao.saveOrUpdate(new Pirtelo(pirtelo));
             res.redirect("/pirtelot");
             return "";
