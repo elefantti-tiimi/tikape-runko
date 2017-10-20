@@ -21,6 +21,10 @@ public class Aines {
         this.pirtelot = new ArrayList();
     }
 
+    public void setPirtelot(ArrayList<Pirtelo> pirtelot) {
+        this.pirtelot = pirtelot;
+    }
+
     public ArrayList<Pirtelo> getPirtelot() {
         return pirtelot;
     }
