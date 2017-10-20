@@ -35,20 +35,24 @@
     </head>
 
     <body>
-        
+
         <div class="topnav">
             <a href="/">Etusivu</a>
             <a href="/pirtelot">Pirtel&ouml;t</a>
             <a class="active" href="/raakaaineet">Raaka-aineet</a>
         </div>
         <h1>Raaka-aineet</h1>
-        
+
         <ol>
             <li th:each="aines: ${aineet}">
                 <span th:text="${aines.getNimi()}">Raaka-aineen nimi</span>
+                (<a th:href="'raakaaineet/' + ${aines.getId()}">poista</a>)
+<!--                (<form method="POST" action="poista">
+                    <input type="submit" value="Poista"/>
+                </form>)-->
             </li>
         </ol>
-        
+
         <form method="POST" action="/raakaaineet">
             Lis&auml;&auml; raaka-aine:<br/>
             <input type="text" name="aines"/><br/>

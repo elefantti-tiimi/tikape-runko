@@ -1,6 +1,7 @@
 package tikape.runko;
 
 import java.util.HashMap;
+import java.util.List;
 import spark.ModelAndView;
 import spark.Spark;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
@@ -59,6 +60,20 @@ public class Main {
         Spark.post("/raakaaineet", (req, res) -> {
             String aines = req.queryParams("aines");
             ainesDao.saveOrUpdate(new Aines(aines));
+            res.redirect("/raakaaineet");
+            return "";
+        });
+        
+        Spark.get("/raakaaineet/:id", (req, res) -> {
+            HashMap map = new HashMap<>();
+            Aines aines = ainesDao.findOne(Integer.parseInt(req.params("id")));
+            map.put("aines", aines);
+
+            return new ModelAndView(map, "aines");
+        }, new ThymeleafTemplateEngine());
+        
+        Spark.post("/raakaaineet/", (req, res) -> {
+            ainesDao.delete(Integer.parseInt(req.params("id")));
             res.redirect("/raakaaineet");
             return "";
         });
