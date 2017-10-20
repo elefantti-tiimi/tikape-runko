@@ -41,10 +41,12 @@ public class Database {
         // tietokantataulujen luomiseen tarvittavat komennot suoritusjärjestyksessä
         lista.add("CREATE TABLE Pirtelo (id integer PRIMARY KEY, nimi varchar(255));");
         lista.add("CREATE TABLE Aines (id integer PRIMARY KEY, nimi varchar(255));");
-        lista.add("CREATE TABLE AinesPirtelo (pirtelo_id integer, aines_id integer, FOREIGN KEY (pirtelo_id) REFERENCES Pirtelo(id), FOREIGN KEY (aines_id) REFERENCES Aines(id));");
+        lista.add("CREATE TABLE AinesPirtelo (pirtelo_id integer, aines_id integer, lkm integer, FOREIGN KEY (pirtelo_id) REFERENCES Pirtelo(id), FOREIGN KEY (aines_id) REFERENCES Aines(id));");
         lista.add("INSERT INTO Pirtelo (nimi) VALUES ('peruspirtelö');");
         lista.add("INSERT INTO Aines (nimi) VALUES ('jäätelö');");
         lista.add("INSERT INTO Pirtelo (nimi) VALUES ('muupirtelö');");
+        lista.add("INSERT INTO AinesPirtelo (pirtelo_id, aines_id, lkm) VALUES (1,1,1)");
+        lista.add("INSERT INTO AinesPirtelo (pirtelo_id, aines_id, lkm) VALUES (2,1,1)");
 
         return lista;
     }

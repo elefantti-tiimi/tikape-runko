@@ -51,4 +51,25 @@ public class AinesPirteloDao implements Dao<AinesPirtelo, Integer>{
         return null;
     }
     
+    public ArrayList<Aines> findAllForPirtelo(Integer haettavaId) throws SQLException {
+        
+        AinesDao ainesDao = new AinesDao(database);
+        Connection connection = database.getConnection();
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM AinesPirtelo WHERE pirtelo_id = ?");
+        stmt.setInt(1, haettavaId);
+
+        ResultSet rs = stmt.executeQuery();
+        ArrayList<Aines> aines = new ArrayList<>();
+        while (rs.next()) {
+            Integer ainesId = rs.getInt("aines_id");
+            aines.add(ainesDao.findOne(ainesId));
+        }
+
+        rs.close();
+        stmt.close();
+        connection.close();
+
+        return aines;
+    }
+    
 }
