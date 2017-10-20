@@ -1,5 +1,7 @@
 package tikape.runko.domain;
 
+import java.util.ArrayList;
+
 public class Aines {
     
     private Integer id;
@@ -13,6 +15,15 @@ public class Aines {
     // Jos jaksaa vääntää, niin Ainekselle voisi syöttäää myös rasva/proteiini/hiilihydraatti/sokeri/kuitu
     // Jos haluatte, niin tehkää vielä erikseen Allergeeni-luokka/taulu, joita voi olla 
     //aineksella n-kappaletta
+    private ArrayList<Pirtelo> pirtelot;
+
+    public Aines() {
+        this.pirtelot = new ArrayList();
+    }
+
+    public ArrayList<Pirtelo> getPirtelot() {
+        return pirtelot;
+    }
 
     public Double getKaloriKg() {
         return kaloriKg;

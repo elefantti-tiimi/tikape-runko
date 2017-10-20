@@ -1,19 +1,25 @@
 package tikape.runko.domain;
 
 //toistaiseksi käytetään vain nimeä ja id:tä, lisää muut muuttujat konstruktoreihin myöhemmin
+
+import java.util.ArrayList;
+
 public class Pirtelo {
 
     private Integer id;
     private String nimi;
     private String ohje; //vapaa tekstikenttä, pirtelön valmistusohje vapaamuotoisesti kirjoitettuna
             //esim. "Sekoita kaikki ainekset keskenään, työnnä banaani korvaan ja nauti".
-    private Double hintaArvio; // Hakua varten, koska ainesten perusteella hakiessa hinta vaihtelee määristä riippuen       
+    private Double hintaArvio; // Hakua varten, koska ainesten perusteella hakiessa hinta vaihtelee määristä riippuen 
+    
+    private ArrayList<Aines> ainekset;
 
     public Pirtelo(String nimi) {//, String ohje, Double hintaArvio) {
        //this.id = id;
         this.nimi = nimi;
         //this.ohje = ohje;
         //this.hintaArvio = hintaArvio;
+        this.ainekset = new ArrayList();
     }
     
     public Pirtelo(Integer id, String nimi) {//, String ohje, Double hintaArvio) {
@@ -21,8 +27,12 @@ public class Pirtelo {
         this.nimi = nimi;
         //this.ohje = ohje;
         //this.hintaArvio = hintaArvio;
+        this.ainekset = new ArrayList();
     }
 
+    public ArrayList<Aines> getAinekset() {
+        return ainekset;
+    }
 
     public Integer getId() {
         return id;
