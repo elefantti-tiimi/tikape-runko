@@ -89,11 +89,24 @@ public class Main {
             return "";
         });
         
-        Spark.post("/pirtelot/:id/poista", (req, res) -> {
-            Integer pid = Integer.parseInt(req.params("id"));
-            pirteloDao.delete(pid);
-            ainesPirteloDao.delete(pid);
-            res.redirect("/");
+        Spark.post("/pirtelot/:id/aines", (req, res) -> {
+            Integer pirteloId = Integer.parseInt(req.params("id"));
+            Pirtelo p = pirteloDao.findOne(pirteloId);
+            Aines a = ainesDao.findOne(Integer.parseInt(req.queryParams("ainesid")));
+            Integer maara = Integer.parseInt(req.queryParams("maara"));
+            String tyyppi = req.queryParams("tyyppi");  
+            AinesPirtelo ap = new AinesPirtelo(p, a, maara, tyyppi);
+            ainesPirteloDao.saveOrUpdate(ap);
+
+            res.redirect("/pirtelot/" + pirteloId);
+            return "";
+        });
+        
+        Spark.post("/pirtelot/:pid/:aid", (req, res) -> {
+            Integer pid = Integer.parseInt(req.params("pid"));
+            Integer aid = Integer.parseInt(req.params("aid"));
+            ainesPirteloDao.deleteOne(pid, aid);
+            res.redirect("/pirtelot/" + pid);
             return "";
         });
 
