@@ -73,7 +73,7 @@ public class AinesPirteloDao implements Dao<AinesPirtelo, Integer>{
         PreparedStatement stmt = conn.prepareStatement("INSERT INTO AinesPirtelo (pirtelo_id, aines_id, maara, tyyppi) VALUES (?, ?, ?, ?)");
         stmt.setInt(1, ap.getPirtelo().getId());
         stmt.setInt(2, ap.getAines().getId());
-        stmt.setInt(3, ap.getMaara());
+        stmt.setDouble(3, ap.getMaara());
         stmt.setString(4, ap.getTyyppi());
         stmt.execute();
         stmt.close();
@@ -93,7 +93,7 @@ public class AinesPirteloDao implements Dao<AinesPirtelo, Integer>{
         while (rs.next()) {
             Aines a = ainesDao.findOne(rs.getInt("aines_id"));
             Pirtelo p = pirteloDao.findOne(rs.getInt("pirtelo_id"));
-            Integer maara = rs.getInt("maara");
+            Double maara = rs.getDouble("maara");
             String tyyppi = rs.getString("tyyppi");
             ap.add(new AinesPirtelo(p,a,maara,tyyppi));
         }

@@ -3,7 +3,7 @@ package tikape.runko.domain;
 public class AinesPirtelo {
     
     // kertoo ainesosien määrän
-    private Integer maara;
+    private Double maara;
     // kertoo minkä tyyppinen ainesosa kyseessä, esim. kpl, gramma tai suhde. Tämän voi tehdä myös enumina 
     private String tyyppi;
     // kertoo miten ainesosaa pirtelössä käytetään, esim. soseutettuna, katolta heitettynä
@@ -13,7 +13,7 @@ public class AinesPirtelo {
     private Aines aines;
     private Pirtelo pirtelo;
 
-    public AinesPirtelo(Pirtelo pirtelo, Aines aines, Integer maara, String tyyppi) {//, int tyyppi, String ohje) {
+    public AinesPirtelo(Pirtelo pirtelo, Aines aines, Double maara, String tyyppi) {//, int tyyppi, String ohje) {
         this.pirtelo = pirtelo;
         this.aines = aines;
         this.maara = maara;
@@ -21,11 +21,11 @@ public class AinesPirtelo {
         //this.ohje = ohje;
     }
 
-    public Integer getMaara() {
+    public Double getMaara() {
         return maara;
     }
 
-    public void setMaara(Integer maara) {
+    public void setMaara(Double maara) {
         this.maara = maara;
     }
 

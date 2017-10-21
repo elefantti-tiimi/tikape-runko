@@ -41,7 +41,7 @@ public class Database {
         // tietokantataulujen luomiseen tarvittavat komennot suoritusjärjestyksessä
         lista.add("CREATE TABLE Pirtelo (id integer PRIMARY KEY, nimi varchar(255), ohje string);");
         lista.add("CREATE TABLE Aines (id integer PRIMARY KEY, nimi varchar(255));");
-        lista.add("CREATE TABLE AinesPirtelo (pirtelo_id integer, aines_id integer, maara integer, tyyppi varchar(255), FOREIGN KEY (pirtelo_id) REFERENCES Pirtelo(id), FOREIGN KEY (aines_id) REFERENCES Aines(id));");
+        lista.add("CREATE TABLE AinesPirtelo (pirtelo_id integer, aines_id integer, maara float, tyyppi varchar(255), FOREIGN KEY (pirtelo_id) REFERENCES Pirtelo(id), FOREIGN KEY (aines_id) REFERENCES Aines(id));");
         lista.add("INSERT INTO Pirtelo (nimi, ohje) VALUES ('peruspirtelö', 'tunge kaikki aineet blenderiin ja muussaa kunnes sekaisin, lisää tarvittaessa maitoa tai jäätelöä jos haluat muokata koostumusta, huom. pirtelön pitää olla tarpeeksi hienoa jottai fantin kärsä ei mene tukkoon!');");
         lista.add("INSERT INTO Aines (nimi) VALUES ('jäätelö');");
         lista.add("INSERT INTO Aines (nimi) VALUES ('maito');");

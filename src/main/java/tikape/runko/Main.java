@@ -80,7 +80,7 @@ public class Main {
             Integer pirteloId = Integer.parseInt(req.params("id"));
             Pirtelo p = pirteloDao.findOne(pirteloId);
             Aines a = ainesDao.findOne(Integer.parseInt(req.queryParams("ainesid")));
-            Integer maara = Integer.parseInt(req.queryParams("maara"));
+            Double maara = Double.parseDouble(req.queryParams("maara"));
             String tyyppi = req.queryParams("tyyppi");  
             AinesPirtelo ap = new AinesPirtelo(p, a, maara, tyyppi);
             ainesPirteloDao.saveOrUpdate(ap);
@@ -93,7 +93,7 @@ public class Main {
             Integer pirteloId = Integer.parseInt(req.params("id"));
             Pirtelo p = pirteloDao.findOne(pirteloId);
             Aines a = ainesDao.findOne(Integer.parseInt(req.queryParams("ainesid")));
-            Integer maara = Integer.parseInt(req.queryParams("maara"));
+            Double maara = Double.parseDouble(req.queryParams("maara"));
             String tyyppi = req.queryParams("tyyppi");  
             AinesPirtelo ap = new AinesPirtelo(p, a, maara, tyyppi);
             ainesPirteloDao.saveOrUpdate(ap);
