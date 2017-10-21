@@ -135,7 +135,9 @@ public class Main {
         }, new ThymeleafTemplateEngine());
         
         Spark.post("/raakaaineet/:id", (req, res) -> {
-            ainesDao.delete(Integer.parseInt(req.params("id")));
+            Integer aid = Integer.parseInt(req.params("id"));
+            ainesDao.delete(aid);
+            ainesPirteloDao.deleteAllWithAines(aid);
             res.redirect("/raakaaineet");
             return "";
         });

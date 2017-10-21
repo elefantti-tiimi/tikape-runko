@@ -51,6 +51,16 @@ public class AinesPirteloDao implements Dao<AinesPirtelo, Integer>{
         }
     };
     
+    public void deleteAllWithAines(Integer i) throws SQLException {
+        try (Connection conn = database.getConnection()) {
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM AinesPirtelo WHERE aines_id =?");
+            stmt.setInt(1, i);
+            stmt.execute();
+            stmt.close();
+            conn.close();
+        }
+    };
+    
     public void deleteOne(Integer i, Integer j) throws SQLException {
         try (Connection conn = database.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement("DELETE FROM AinesPirtelo WHERE pirtelo_id =? AND aines_id =?");
