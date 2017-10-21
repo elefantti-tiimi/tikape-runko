@@ -23,9 +23,17 @@ public class AinesPirteloDao implements Dao<AinesPirtelo, Integer>{
         return null;
     };
     
-//    public AinesPirtelo findOne(Integer i, Integer j) Throws SQLException {
-//        
-//    }
+    public AinesPirtelo findOne(Integer i, Integer j) throws SQLException {
+        try (Connection conn = database.getConnection()) {
+            PreparedStatement stmt = conn.prepareStatement("SELECT FROM AinesPirtelo WHERE pirtelo_id =? AND aines_id =?");
+            stmt.setInt(1, i);
+            stmt.setInt(2, j);
+            stmt.execute();
+            stmt.close();
+            conn.close();
+        }
+        return null;
+    };
 
     @Override
     public List<AinesPirtelo> findAll() throws SQLException {
@@ -37,6 +45,17 @@ public class AinesPirteloDao implements Dao<AinesPirtelo, Integer>{
         try (Connection conn = database.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement("DELETE FROM AinesPirtelo WHERE pirtelo_id =?");
             stmt.setInt(1, i);
+            stmt.execute();
+            stmt.close();
+            conn.close();
+        }
+    };
+    
+    public void deleteOne(Integer i, Integer j) throws SQLException {
+        try (Connection conn = database.getConnection()) {
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM AinesPirtelo WHERE pirtelo_id =? AND aines_id =?");
+            stmt.setInt(1, i);
+            stmt.setInt(2, j);
             stmt.execute();
             stmt.close();
             conn.close();

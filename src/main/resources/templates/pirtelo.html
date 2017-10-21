@@ -48,6 +48,9 @@
         <ol>
             <li th:each="pa: ${pirteloaineet}">
                 <span th:text="${pa.aines.nimi} +' '+${pa.maara}+' '+${pa.tyyppi}">Pirtelon aines</span>
+                <form method="POST" th:action="'pirtelot/' + ${pirtelo.id} +'/' + ${pa.aines.id}">
+                    <input type="submit" value="poista aines"/>
+                </form>
             </li>
         </ol>
         

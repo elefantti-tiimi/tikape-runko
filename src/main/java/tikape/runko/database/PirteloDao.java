@@ -154,5 +154,7 @@ public class PirteloDao implements Dao<Pirtelo, Integer>{
 
         return pirtelo;
     }
+    
+    
 
 }
