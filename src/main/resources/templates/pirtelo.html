@@ -71,12 +71,13 @@
         </form>
         
         <br/><br/>
-              
-        <textarea rows="10" cols="80" name="ohje" form="ohjeform" th:text="${pirtelo.ohje} +'...'">lisää tähän ohje...</textarea>
+        <div th:with="ehto=${pirtelo.ohje != null}">
+        <textarea rows="10" cols="80" name="ohje" form="ohjeform" th:if="${ehto}" th:text="${pirtelo.ohje} +'...'">Lisää tähän ohje...</textarea>
+        <textarea rows="10" cols="80" name="ohje" form="ohjeform" th:unless="${ehto}">Lisää tähän ohje...</textarea>
         <form method="POST" id="ohjeform" th:action="'/pirtelot/' + ${pirtelo.id} + '/ohje'" >
             <input type="submit" value="Lisää ohje"/>
         </form>
-
+        </div>
         <br/><br/><br/>
 
         <form method="POST" th:action="'/pirtelot/' + ${pirtelo.id} +'/poista'">
