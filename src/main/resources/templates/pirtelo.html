@@ -72,11 +72,11 @@
         
         <br/><br/>
         
-        <form method="POST" th:action="'/pirtelot/' + ${pirtelo.id} + '/ohje'">
-            <input type="submit" name="ohje" value="lisää ohje"/>
+        <form method="POST" id="ohjeform" th:action="'/pirtelot/' + ${pirtelo.id} + '/ohje'" >
+            <input type="submit" value="Lisää ohje"/>
         </form>
         
-        <textarea rows="10" cols="80" name="ohje" form="usrform">Lisää ohje tähän..</textarea>
+        <textarea rows="10" cols="80" name="ohje" form="ohjeform">Lisää ohje tähän..</textarea>
 
         <br/><br/><br/>
 

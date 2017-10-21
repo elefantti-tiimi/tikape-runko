@@ -102,6 +102,13 @@ public class Main {
             return "";
         });
         
+        Spark.post("/pirtelot/:id/ohje", (req, res) -> {
+            Integer pirteloId = Integer.parseInt(req.params("id"));
+            Pirtelo p = pirteloDao.addOhje(pirteloId, req.queryParams("ohje"));
+            res.redirect("/pirtelot/" + pirteloId);
+            return "";
+        });
+        
         Spark.post("/pirtelot/:pid/:aid", (req, res) -> {
             Integer pid = Integer.parseInt(req.params("pid"));
             Integer aid = Integer.parseInt(req.params("aid"));

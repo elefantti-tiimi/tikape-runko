@@ -52,7 +52,7 @@ public class PirteloDao implements Dao<Pirtelo, Integer>{
         List<Pirtelo> pirtelot = new ArrayList<>();
         while (rs.next()) {
             Integer id = rs.getInt("id");
-            String nimi = rs.getString("nimi");
+            String nimi = rs.getString("nimi");         
             
             Pirtelo uusi = new Pirtelo(id, nimi);
             
@@ -155,6 +155,17 @@ public class PirteloDao implements Dao<Pirtelo, Integer>{
         return pirtelo;
     }
     
-    
+    public Pirtelo addOhje(Integer pid, String ohje) throws SQLException {
+        Pirtelo p = this.findOne(pid);
+        p.setOhje(ohje);
+        Connection connection = database.getConnection();
+        PreparedStatement stmt = connection.prepareStatement("UPDATE Pirtelo SET ohje=? WHERE id = ?");
+        stmt.setString(1, ohje);
+        stmt.setInt(2,pid);
+        stmt.execute();
+        stmt.close();
+        connection.close();
+        return p;
+    }
 
 }
