@@ -66,6 +66,14 @@
             <input type="text" value="yksikkö" name="tyyppi"/>
             <input type="submit" value="lis&auml;&auml; pirtel&ouml;&ouml;n"/>
         </form>
+        
+        <br/><br/>
+        
+        <form method="POST" th:action="'/pirtelot/' + ${pirtelo.id} + '/ohje'">
+            <input type="submit" name="ohje" value="lisää ohje"/>
+        </form>
+        
+        <textarea rows="10" cols="80" name="ohje" form="usrform">Lisää ohje tähän..</textarea>
 
         <br/><br/><br/>
 
