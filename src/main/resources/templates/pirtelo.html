@@ -58,7 +58,7 @@
         <p><span th:text="${pirtelo.ohje}">Pirtelon ohje</span></p>
 
         <br/><br/>
-
+        
         <form method="POST" th:action="'/pirtelot/' + ${pirtelo.id} + '/aines'">
             <select name="ainesid" th:field="*{aines.id}">
                 <option th:each="aines : ${ainekset}" 
@@ -66,16 +66,16 @@
                         th:text="${aines.nimi}">lisää aines</option>
             </select>
             <input type="number" step="any" value="lukumäärä" name="maara" min="0" required="required"/>
-            <input type="text" value="yksikkö" name="tyyppi"/>
+            <input type="text" value="yksikk&ouml;" name="tyyppi"/>
             <input type="submit" value="lis&auml;&auml; pirtel&ouml;&ouml;n"/>
         </form>
         
         <br/><br/>
         <div th:with="ehto=${pirtelo.ohje != null}">
-        <textarea rows="10" cols="80" name="ohje" form="ohjeform" th:if="${ehto}" th:text="${pirtelo.ohje} +'...'">Lisää tähän ohje...</textarea>
-        <textarea rows="10" cols="80" name="ohje" form="ohjeform" th:unless="${ehto}">Lisää tähän ohje...</textarea>
+        <textarea rows="10" cols="80" name="ohje" form="ohjeform" th:if="${ehto}" th:text="${pirtelo.ohje} +'...'">Lis&auml;&auml; t&auml;h&auml;n ohje...</textarea>
+        <textarea rows="10" cols="80" name="ohje" form="ohjeform" th:unless="${ehto}">Lis&auml;&auml; t&auml;h&auml;n ohje...</textarea>
         <form method="POST" id="ohjeform" th:action="'/pirtelot/' + ${pirtelo.id} + '/ohje'" >
-            <input type="submit" value="Lisää ohje"/>
+            <input type="submit" value="Lis&auml;&auml; ohje"/>
         </form>
         </div>
         <br/><br/><br/>
