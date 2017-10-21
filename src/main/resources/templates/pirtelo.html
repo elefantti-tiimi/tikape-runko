@@ -43,13 +43,13 @@
         <h1 th:text="${pirtelo.nimi}">Pirtel&ouml;n nimi</h1>
 
         <p>Olet saapunut pirtel&ouml;n <span th:text="${pirtelo.nimi}">pirtelo
-            </span> henkil&ouml;kohtaiselle sivulle.<br/><br/>Ainekset:</p>
+            </span> reseptisivulle.<br/><br/>Ainekset:</p>
 
         <ol>
             <li th:each="pa: ${pirteloaineet}">
-                <form method="POST" th:action="'/pirtelot/' + ${pirtelo.id} +'/' + ${pa.aines.id}">
-                    <span th:text="${pa.aines.nimi} +' '+${pa.maara}+' '+${pa.tyyppi}">Pirtelon aines</span>
-                    <div align ="center"><input type="submit" value="poista aines"/></div>
+                <span th:text="${pa.aines.nimi} +' '+${pa.maara}+' '+${pa.tyyppi}">Pirtelon aines</span>
+                <form method="POST" th:action="'/pirtelot/' + ${pirtelo.id} +'/' + ${pa.aines.id}">                  
+                    <input type="submit" value="poista aines"/>
                 </form>
             </li>
         </ol>
@@ -71,12 +71,11 @@
         </form>
         
         <br/><br/>
-        
+              
+        <textarea rows="10" cols="80" name="ohje" form="ohjeform" th:text="${pirtelo.ohje} +'...'">lisää tähän ohje...</textarea>
         <form method="POST" id="ohjeform" th:action="'/pirtelot/' + ${pirtelo.id} + '/ohje'" >
             <input type="submit" value="Lisää ohje"/>
         </form>
-        
-        <textarea rows="10" cols="80" name="ohje" form="ohjeform">Lisää ohje tähän..</textarea>
 
         <br/><br/><br/>
 

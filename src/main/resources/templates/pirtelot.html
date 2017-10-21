@@ -46,9 +46,8 @@
 
         <p>Fantin pirtel&ouml;valikoima</p>
         <ol>
-            <li th:each="pirtelo: ${pirtelot}">
-                <span th:text="${pirtelo.getNimi()}">Pirtel&ouml;n nimi</span>
-                (<a th:href="'pirtelot/' + ${pirtelo.getId()}">lis&auml;tietoja</a>)
+            <li th:each="pirtelo: ${pirtelot}">            
+                <a th:href="'pirtelot/' + ${pirtelo.id}"><span th:text="${pirtelo.nimi}">Pirtel&ouml;n nimi</span></a>
             </li>
         </ol>
 
