@@ -46,8 +46,8 @@
             </span> henkil&ouml;kohtaiselle sivulle.<br/><br/>Ainekset:</p>
 
         <ol>
-            <li th:each="aines: ${pirteloaineet}">
-                <span th:text="${aines.nimi}">Pirtelon aines</span>
+            <li th:each="pa: ${pirteloaineet}">
+                <span th:text="${pa.aines.nimi} +' '+${pa.maara}+' '+${pa.tyyppi}">Pirtelon aines</span>
             </li>
         </ol>
 
@@ -59,7 +59,8 @@
                         th:value="${aines.id}" 
                         th:text="${aines.nimi}">lisää aines</option>
             </select>
-            <input type="number" value="lukumäärä" name="lkm" min="1"/>
+            <input type="number" value="lukumäärä" name="maara" min="1"/>
+            <input type="text" value="yksikkö" name="tyyppi"/>
             <input type="submit" value="lis&auml;&auml; pirtel&ouml;&ouml;n"/>
         </form>
 

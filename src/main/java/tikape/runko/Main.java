@@ -43,26 +43,26 @@ public class Main {
             return "";
         });
         
-        Spark.post("/pirtelot/:id/aines", (req, res) -> {
-            int pirteloId = Integer.parseInt(req.params("id"));
-            int ainesId = Integer.parseInt(req.queryParams("ainesid"));
-            
-            System.out.println(pirteloDao.findOne(pirteloId));
-            System.out.println(ainesDao.findOne(ainesId));
-            
-            Pirtelo p = pirteloDao.findOne(pirteloId);
-            Aines a = ainesDao.findOne(ainesId);
-            
-            p.getAinekset().add(a);
-            a.getPirtelot().add(p);
-            
-            pirteloDao.saveOrUpdate(p);
-            //tuplaa liitostaulun, ei vielä valmis
-            //ainesDao.saveOrUpdate(a);
-            
-            res.redirect("/pirtelot/" + pirteloId);
-            return "";
-        });
+//        Spark.post("/pirtelot/:id/aines", (req, res) -> {
+//            int pirteloId = Integer.parseInt(req.params("id"));
+//            int ainesId = Integer.parseInt(req.queryParams("ainesid"));
+//            
+//            System.out.println(pirteloDao.findOne(pirteloId));
+//            System.out.println(ainesDao.findOne(ainesId));
+//            
+//            Pirtelo p = pirteloDao.findOne(pirteloId);
+//            Aines a = ainesDao.findOne(ainesId);
+//            
+//            p.getAinekset().add(a);
+//            a.getPirtelot().add(p);
+//            
+//            pirteloDao.saveOrUpdate(p);
+//            //tuplaa liitostaulun, ei vielä valmis
+//            //ainesDao.saveOrUpdate(a);
+//            
+//            res.redirect("/pirtelot/" + pirteloId);
+//            return "";
+//        });
         
         Spark.get("/pirtelot/:id", (req, res) -> {
             HashMap map = new HashMap<>();
@@ -76,15 +76,17 @@ public class Main {
             return new ModelAndView(map, "pirtelo");
         }, new ThymeleafTemplateEngine());
         
-        Spark.post("/pirtelo/:id", (req, res) -> {
-            Integer pirteloId = Integer.parseInt(req.params(":id"));
-            Integer ainesId = Integer.parseInt(req.queryParams("ainesId"));
-            Integer lkm = Integer.parseInt(req.queryParams("lkm"));
-  
-            AinesPirtelo ap = new AinesPirtelo(pirteloId, ainesId, lkm);
+        Spark.post("/pirtelot/:id/aines", (req, res) -> {
+            Integer pirteloId = Integer.parseInt(req.params("id"));
+            Pirtelo p = pirteloDao.findOne(pirteloId);
+            Aines a = ainesDao.findOne(Integer.parseInt(req.queryParams("ainesId")));
+            Integer maara = Integer.parseInt(req.queryParams("maara"));
+            String tyyppi = req.queryParams("tyyppi")
+;  
+            AinesPirtelo ap = new AinesPirtelo(p, a, maara, tyyppi);
             ainesPirteloDao.saveOrUpdate(ap);
 
-            res.redirect("/pirtelo/:id");
+            res.redirect("/pirtelot/" + pirteloId);
             return "";
         });
 

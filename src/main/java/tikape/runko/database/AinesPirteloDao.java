@@ -22,6 +22,10 @@ public class AinesPirteloDao implements Dao<AinesPirtelo, Integer>{
     public AinesPirtelo findOne(Integer i) throws SQLException {
         return null;
     };
+    
+//    public AinesPirtelo findOne(Integer i, Integer j) Throws SQLException {
+//        
+//    }
 
     @Override
     public List<AinesPirtelo> findAll() throws SQLException {
@@ -40,36 +44,39 @@ public class AinesPirteloDao implements Dao<AinesPirtelo, Integer>{
     @Override
     public AinesPirtelo saveOrUpdate(AinesPirtelo ap) throws SQLException {
         try (Connection conn = database.getConnection()) {
-            PreparedStatement stmt = conn.prepareStatement(
-                "INSERT INTO AinesPirtelo (pirtelo_id, aines_id, lukumaara) VALUES (?, ?, ?)");
-            stmt.setInt(1, ap.getPirteloId());
-            stmt.setInt(2, ap.getAinesId());
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO AinesPirtelo (pirtelo_id, aines_id, maara, tyyppi) VALUES (?, ?, ?, ?)");
+            stmt.setInt(1, ap.getPirtelo().getId());
+            stmt.setInt(2, ap.getAines().getId());
             stmt.setInt(3, ap.getMaara());
+            stmt.setString(4, ap.getTyyppi());
             stmt.executeUpdate();
         }
 
         return null;
     }
     
-    public ArrayList<Aines> findAllForPirtelo(Integer haettavaId) throws SQLException {
-        
+    public ArrayList<AinesPirtelo> findAllForPirtelo(Integer haettavaId) throws SQLException {
+        PirteloDao pirteloDao = new PirteloDao(database);
         AinesDao ainesDao = new AinesDao(database);
         Connection connection = database.getConnection();
         PreparedStatement stmt = connection.prepareStatement("SELECT * FROM AinesPirtelo WHERE pirtelo_id = ?");
         stmt.setInt(1, haettavaId);
 
         ResultSet rs = stmt.executeQuery();
-        ArrayList<Aines> aines = new ArrayList<>();
+        ArrayList<AinesPirtelo> ap = new ArrayList<>();
         while (rs.next()) {
-            Integer ainesId = rs.getInt("aines_id");
-            aines.add(ainesDao.findOne(ainesId));
+            Aines a = ainesDao.findOne(rs.getInt("aines_id"));
+            Pirtelo p = pirteloDao.findOne(rs.getInt("pirtelo_id"));
+            Integer maara = rs.getInt("maara");
+            String tyyppi = rs.getString("tyyppi");
+            ap.add(new AinesPirtelo(p,a,maara,tyyppi));
         }
 
         rs.close();
         stmt.close();
         connection.close();
 
-        return aines;
+        return ap;
     }
     
 }

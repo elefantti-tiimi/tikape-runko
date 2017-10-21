@@ -92,25 +92,25 @@ public class PirteloDao implements Dao<Pirtelo, Integer>{
 
         stmt.close();
         
-        if (!object.getAinekset().isEmpty()) {
-            for (int i = 0; i < object.getAinekset().size(); i++) {
-                PreparedStatement stmt2 = conn.prepareStatement("INSERT INTO AinesPirtelo(aines_id, pirtelo_id) VALUES(?,?)");
-
-                stmt2.setInt(1, object.getAinekset().get(i).getId());
-                stmt2.setInt(2, object.getId());
-
-                stmt2.executeUpdate();
-
-                stmt2.close();
-            }
-        }
+//        if (!object.getAinekset().isEmpty()) {
+//            for (int i = 0; i < object.getAinekset().size(); i++) {
+//                PreparedStatement stmt2 = conn.prepareStatement("INSERT INTO AinesPirtelo(aines_id, pirtelo_id) VALUES(?,?)");
+//
+//                stmt2.setInt(1, object.getAinekset().get(i).getId());
+//                stmt2.setInt(2, object.getId());
+//
+//                stmt2.executeUpdate();
+//
+//                stmt2.close();
+//            }
+//        }
         
         conn.close();
         
         
         Integer uusiId = findIdByName(object.getNimi());
         Pirtelo p = new Pirtelo(uusiId, object.getNimi());
-        p.setAinekset(this.findAllForPirtelo(uusiId));
+       // p.setAinekset(this.findAllForPirtelo(uusiId));
         return p;
 
     }
@@ -134,25 +134,24 @@ public class PirteloDao implements Dao<Pirtelo, Integer>{
         return id;
     }
     
-    public ArrayList<Aines> findAllForPirtelo(Integer haettavaId) throws SQLException {
+    public ArrayList<Pirtelo> findAllForAines(Integer haettavaId) throws SQLException {
 
         Connection connection = database.getConnection();
-        AinesDao ainesDAO = new AinesDao(this.database);
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM AinesPirtelo WHERE pirtelo_id = ?");
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM AinesPirtelo WHERE aines_id = ?");
         stmt.setInt(1, haettavaId);
 
         ResultSet rs = stmt.executeQuery();
-        ArrayList<Aines> ainekset = new ArrayList<>();
+        ArrayList<Pirtelo> pirtelo = new ArrayList<>();
         while (rs.next()) {
-            Integer ainesId = rs.getInt("aines_id");
-            ainekset.add(ainesDAO.findOne(ainesId));
+            Integer ainesId = rs.getInt("pirtelo_id");
+            pirtelo.add(findOne(ainesId));
         }
 
         rs.close();
         stmt.close();
         connection.close();
 
-        return ainekset;
+        return pirtelo;
     }
 
 }
