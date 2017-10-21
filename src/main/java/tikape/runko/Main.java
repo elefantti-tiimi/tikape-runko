@@ -89,23 +89,18 @@ public class Main {
             return "";
         });
         
-        Spark.post("/pirtelot/:id/aines", (req, res) -> {
-            Integer pirteloId = Integer.parseInt(req.params("id"));
-            Pirtelo p = pirteloDao.findOne(pirteloId);
-            Aines a = ainesDao.findOne(Integer.parseInt(req.queryParams("ainesid")));
-            Double maara = Double.parseDouble(req.queryParams("maara"));
-            String tyyppi = req.queryParams("tyyppi");  
-            AinesPirtelo ap = new AinesPirtelo(p, a, maara, tyyppi);
-            ainesPirteloDao.saveOrUpdate(ap);
-
-            res.redirect("/pirtelot/" + pirteloId);
-            return "";
-        });
-        
         Spark.post("/pirtelot/:id/ohje", (req, res) -> {
             Integer pirteloId = Integer.parseInt(req.params("id"));
             Pirtelo p = pirteloDao.addOhje(pirteloId, req.queryParams("ohje"));
             res.redirect("/pirtelot/" + pirteloId);
+            return "";
+        });
+        
+        Spark.post("/pirtelot/:id/poista", (req, res) -> {
+            Integer pirteloId = Integer.parseInt(req.params("id"));
+            pirteloDao.delete(pirteloId);
+            ainesPirteloDao.delete(pirteloId);
+            res.redirect("/pirtelot");
             return "";
         });
         
