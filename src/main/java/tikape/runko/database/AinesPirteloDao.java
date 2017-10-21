@@ -34,6 +34,13 @@ public class AinesPirteloDao implements Dao<AinesPirtelo, Integer>{
 
     @Override
     public void delete(Integer i) throws SQLException {
+        try (Connection conn = database.getConnection()) {
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM AinesPirtelo WHERE pirtelo_id =?");
+            stmt.setInt(1, i);
+            stmt.execute();
+            stmt.close();
+            conn.close();
+        }
     };
     
     @Override
@@ -43,15 +50,15 @@ public class AinesPirteloDao implements Dao<AinesPirtelo, Integer>{
     
     @Override
     public AinesPirtelo saveOrUpdate(AinesPirtelo ap) throws SQLException {
-        try (Connection conn = database.getConnection()) {
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO AinesPirtelo (pirtelo_id, aines_id, maara, tyyppi) VALUES (?, ?, ?, ?)");
-            stmt.setInt(1, ap.getPirtelo().getId());
-            stmt.setInt(2, ap.getAines().getId());
-            stmt.setInt(3, ap.getMaara());
-            stmt.setString(4, ap.getTyyppi());
-            stmt.executeUpdate();
-        }
-
+        Connection conn = database.getConnection();
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO AinesPirtelo (pirtelo_id, aines_id, maara, tyyppi) VALUES (?, ?, ?, ?)");
+        stmt.setInt(1, ap.getPirtelo().getId());
+        stmt.setInt(2, ap.getAines().getId());
+        stmt.setInt(3, ap.getMaara());
+        stmt.setString(4, ap.getTyyppi());
+        stmt.execute();
+        stmt.close();
+        conn.close();
         return null;
     }
     
