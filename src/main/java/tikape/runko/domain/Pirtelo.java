@@ -25,7 +25,7 @@ public class Pirtelo {
     public Pirtelo(Integer id, String nimi) {//, String ohje, Double hintaArvio) {
         this.id = id;
         this.nimi = nimi;
-        //this.ohje = ohje;
+        this.ohje = new String();
         //this.hintaArvio = hintaArvio;
         this.ainekset = new ArrayList();
     }

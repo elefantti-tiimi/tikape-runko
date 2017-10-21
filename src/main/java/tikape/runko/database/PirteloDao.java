@@ -33,6 +33,7 @@ public class PirteloDao implements Dao<Pirtelo, Integer>{
         String nimi = rs.getString("nimi");
 
         Pirtelo o = new Pirtelo(id,nimi);//,"",0.0);
+        o.setOhje(rs.getString("ohje"));
 
         rs.close();
         stmt.close();

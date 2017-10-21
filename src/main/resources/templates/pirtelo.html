@@ -50,8 +50,11 @@
                 <span th:text="${pa.aines.nimi} +' '+${pa.maara}+' '+${pa.tyyppi}">Pirtelon aines</span>
             </li>
         </ol>
+        
+        <br/>
+        <p><span th:text="${pirtelo.ohje}">Pirtelon ohje</span></p>
 
-        <br/><br/><br/>
+        <br/><br/>
 
         <form method="POST" th:action="'/pirtelot/' + ${pirtelo.id} + '/aines'">
             <select name="ainesid" th:field="*{aines.id}">
