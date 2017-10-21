@@ -42,14 +42,26 @@ public class Database {
         lista.add("CREATE TABLE Pirtelo (id integer PRIMARY KEY, nimi varchar(255), ohje string);");
         lista.add("CREATE TABLE Aines (id integer PRIMARY KEY, nimi varchar(255));");
         lista.add("CREATE TABLE AinesPirtelo (pirtelo_id integer, aines_id integer, maara float, tyyppi varchar(255), FOREIGN KEY (pirtelo_id) REFERENCES Pirtelo(id), FOREIGN KEY (aines_id) REFERENCES Aines(id));");
-        lista.add("INSERT INTO Pirtelo (nimi, ohje) VALUES ('peruspirtelö', 'tunge kaikki aineet blenderiin ja muussaa kunnes sekaisin, lisää tarvittaessa maitoa tai jäätelöä jos haluat muokata koostumusta, huom. pirtelön pitää olla tarpeeksi hienoa jottai fantin kärsä ei mene tukkoon!');");
+        lista.add("INSERT INTO Pirtelo (nimi, ohje) VALUES ('peruspirtelö', 'tunge kaikki aineet blenderiin ja muussaa kunnes sekaisin, lisää tarvittaessa maitoa tai jäätelöä jos haluat muokata koostumusta, huom. pirtelön pitää olla tarpeeksi hienoa, jottei fantin kärsä mene tukkoon!');");
+        lista.add("INSERT INTO Pirtelo (nimi, ohje) VALUES ('banaanipirtelö', 'soseuta banaanit ja jäätelö blenderissä, nauti kookospalmun katveessa');");
+        lista.add("INSERT INTO Pirtelo (nimi, ohje) VALUES ('suklaapirtelö', 'sulata suklaa vesihauteessa, surauta jäätelön kanssa blenderissä tasaiseksi mössöksi, lisää tarvittaessa maitoa');");
+        lista.add("INSERT INTO Pirtelo (nimi, ohje) VALUES ('piripirtelö', 'vedä piri naamaan ja unohda pirtelön tekeminen');");
         lista.add("INSERT INTO Aines (nimi) VALUES ('jäätelö');");
         lista.add("INSERT INTO Aines (nimi) VALUES ('maito');");
-        lista.add("INSERT INTO Pirtelo (nimi, ohje) VALUES ('banaanipirtelö', 'soseuta banaanit ja jäätelö blenderissä, nauti kookospalmun katveessa');");
         lista.add("INSERT INTO Aines (nimi) VALUES ('banaani');");
+        lista.add("INSERT INTO Aines (nimi) VALUES ('suklaa');");
+        lista.add("INSERT INTO Aines (nimi) VALUES ('kookospalmu');");
+        lista.add("INSERT INTO Aines (nimi) VALUES ('piri');");
         lista.add("INSERT INTO AinesPirtelo (pirtelo_id, aines_id, maara, tyyppi) VALUES (1,1,1,'l')");
-        lista.add("INSERT INTO AinesPirtelo (pirtelo_id, aines_id, maara, tyyppi) VALUES (2,1,2,'dl')");
-        lista.add("INSERT INTO AinesPirtelo (pirtelo_id, aines_id, maara, tyyppi) VALUES (2,3,3,'kpl')");
+        lista.add("INSERT INTO AinesPirtelo (pirtelo_id, aines_id, maara, tyyppi) VALUES (1,2,2,'dl')");
+        lista.add("INSERT INTO AinesPirtelo (pirtelo_id, aines_id, maara, tyyppi) VALUES (2,1,0.5,'l')");
+        lista.add("INSERT INTO AinesPirtelo (pirtelo_id, aines_id, maara, tyyppi) VALUES (2,2,2.5,'dl')");
+        lista.add("INSERT INTO AinesPirtelo (pirtelo_id, aines_id, maara, tyyppi) VALUES (2,3,2,'kpl')");
+        lista.add("INSERT INTO AinesPirtelo (pirtelo_id, aines_id, maara, tyyppi) VALUES (2,5,1,'kpl, koristeeksi')");
+        lista.add("INSERT INTO AinesPirtelo (pirtelo_id, aines_id, maara, tyyppi) VALUES (3,1,1,'l')");
+        lista.add("INSERT INTO AinesPirtelo (pirtelo_id, aines_id, maara, tyyppi) VALUES (3,4,1,'levy')");
+        lista.add("INSERT INTO AinesPirtelo (pirtelo_id, aines_id, maara, tyyppi) VALUES (4,6,0.2,'g')");
+        
 
         return lista;
     }
