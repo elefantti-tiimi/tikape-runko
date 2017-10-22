@@ -40,12 +40,26 @@
             <a class="active" href="/raakaaineet">Raaka-aineet</a>
         </div>
 
-        <h1 th:text="${aines.getNimi()}">Pirtel&ouml;n nimi</h1>
+        <h1 th:text="${aines.nimi}">Aineksen nimi</h1>
 
-        <p>Olet saapunut aineksen <span th:text="${aines.getNimi()}">aines
-            </span> henkil&ouml;kohtaiselle sivulle.</p>
+        <p>Olet saapunut aineksen <span th:text="${aines.nimi}">aines
+            </span> sivulle.</p>
+        
+        <br/><br/>
+        <div th:with="ehto=${pirtelot.isEmpty() != false}">
+      
+            <span th:if="${ehto}">Ainesta ei ole käytetty vielä missään pirtelöreseptissä</span>
+            
+            <span th:unless="${ehto}" th:text="'Ainesta ' + ${aines.nimi} + ' käytetään seuraavissa pirtelöresepteissä'">aines</span>
+        </div>
+            <ol>
+                <li th:each="p: ${pirtelot}">            
+                <a th:href="'pirtelot/' + ${p.id}"><span th:text="${p.nimi}">Pirtel&ouml;n nimi</span></a>
+                </li>
+            </ol>
+        
 
-        <form method="POST" th:action="'/raakaaineet/' + ${aines.getId()}">
+        <form method="POST" th:action="'/raakaaineet/' + ${aines.id}">
             <input type="submit" value="Poista raaka-aine"/>
         </form>
     </body>

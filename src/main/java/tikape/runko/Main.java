@@ -128,8 +128,10 @@ public class Main {
         
         Spark.get("/raakaaineet/:id", (req, res) -> {
             HashMap map = new HashMap<>();
+            pirteloDao.findAllForAines(Integer.parseInt(req.params("id")));
             Aines aines = ainesDao.findOne(Integer.parseInt(req.params("id")));
             map.put("aines", aines);
+            map.put("pirtelot" , pirteloDao.findAllForAines(Integer.parseInt(req.params("id"))));
 
             return new ModelAndView(map, "aines");
         }, new ThymeleafTemplateEngine());
