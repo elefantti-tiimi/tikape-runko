@@ -42,9 +42,17 @@
 
         <h1 th:text="${pirtelo.nimi}">Pirtel&ouml;n nimi</h1>
 
-        <p>Olet saapunut pirtel&ouml;n <span th:text="${pirtelo.nimi}">pirtelo
-            </span> reseptisivulle.<br/><br/>Ainekset:</p>
-
+        <p>Olet saapunut pirtel&ouml;n
+            <span th:text="${pirtelo.nimi}">pirtelo</span> reseptisivulle.
+        </p>
+        
+        <br/><br/>
+        
+        <div th:with="ainesehto=${pirteloaineet.isEmpty() != false}">
+            <span th:if="${ainesehto}">Pirtelöön ei vielä ole lisätty aineksia</span>    
+            <span th:unless="${ainesehto}">Aineslista:</span>
+        </div>
+        
         <ol>
             <li th:each="pa: ${pirteloaineet}">
                 <span th:text="${pa.aines.nimi} +' '+${pa.maara}+' '+${pa.tyyppi}">Pirtelon aines</span>
@@ -54,9 +62,13 @@
             </li>
         </ol>
         
-        <br/>
-        <p><span th:text="${pirtelo.ohje}">Pirtelon ohje</span></p>
-
+        <br/> 
+       
+        <div th:with="ohjeehto=${pirtelo.ohje != null}">
+                <span th:if="${ohjeehto}" th:text="${pirtelo.ohje}">Pirtelon ohje</span>
+                <span th:unless="${ohjeehto}">Pirtelöön ei ole vielä lisätty ohjetta</span>
+        </div>
+        
         <br/><br/>
         
         <form method="POST" th:action="'/pirtelot/' + ${pirtelo.id} + '/aines'">
@@ -72,11 +84,11 @@
         
         <br/><br/>
         <div th:with="ehto=${pirtelo.ohje != null}">
-        <textarea rows="10" cols="80" name="ohje" form="ohjeform" th:if="${ehto}" th:text="${pirtelo.ohje} +'...'">Lis&auml;&auml; t&auml;h&auml;n ohje...</textarea>
-        <textarea rows="10" cols="80" name="ohje" form="ohjeform" th:unless="${ehto}">Lis&auml;&auml; t&auml;h&auml;n ohje...</textarea>
-        <form method="POST" id="ohjeform" th:action="'/pirtelot/' + ${pirtelo.id} + '/ohje'" >
-            <input type="submit" value="Lis&auml;&auml; ohje"/>
-        </form>
+            <textarea rows="10" cols="80" name="ohje" form="ohjeform" th:if="${ehto}" th:text="${pirtelo.ohje}">Lis&auml;&auml; t&auml;h&auml;n ohje...</textarea>
+            <textarea rows="10" cols="80" name="ohje" form="ohjeform" th:unless="${ehto}">Lis&auml;&auml; t&auml;h&auml;n ohje...</textarea>
+            <form method="POST" id="ohjeform" th:action="'/pirtelot/' + ${pirtelo.id} + '/ohje'" >
+                <input type="submit" value="Lis&auml;&auml; tai muokkaa ohjetta"/>
+            </form>
         </div>
         <br/><br/><br/>
 

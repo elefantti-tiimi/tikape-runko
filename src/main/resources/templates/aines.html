@@ -52,11 +52,11 @@
             
             <span th:unless="${ehto}" th:text="'Ainesta ' + ${aines.nimi} + ' käytetään seuraavissa pirtelöresepteissä'">aines</span>
         </div>
-            <ol>
-                <li th:each="p: ${pirtelot}">            
+        <ol>
+            <li th:each="p: ${pirtelot}">            
                 <a th:href="'/pirtelot/' + ${p.id}"><span th:text="${p.nimi}">Pirtel&ouml;n nimi</span></a>
-                </li>
-            </ol>
+            </li>
+        </ol>
         
 
         <form method="POST" th:action="'/raakaaineet/' + ${aines.id}">
