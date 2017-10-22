@@ -15,8 +15,9 @@ public class Main {
     //test
     public static void main(String[] args) throws Exception {
         Database database = new Database("jdbc:sqlite:pirtelot.db");
-        database.init();
-
+        database.init();        
+        Spark.staticFileLocation("/public");
+//        Spark.init();
         PirteloDao pirteloDao = new PirteloDao(database);
         AinesDao ainesDao = new AinesDao(database);
         AinesPirteloDao ainesPirteloDao = new AinesPirteloDao(database);
