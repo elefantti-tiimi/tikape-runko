@@ -50,7 +50,6 @@ public class Database {
         lista.add("INSERT INTO Aines (nimi) VALUES ('banaani');");
         lista.add("INSERT INTO Aines (nimi) VALUES ('suklaa');");
         lista.add("INSERT INTO Aines (nimi) VALUES ('kookospalmu');");
-        lista.add("INSERT INTO Aines (nimi) VALUES ('piri');");
         lista.add("INSERT INTO AinesPirtelo (pirtelo_id, aines_id, maara, tyyppi) VALUES (1,1,1,'l')");
         lista.add("INSERT INTO AinesPirtelo (pirtelo_id, aines_id, maara, tyyppi) VALUES (1,2,2,'dl')");
         lista.add("INSERT INTO AinesPirtelo (pirtelo_id, aines_id, maara, tyyppi) VALUES (2,1,0.5,'l')");
