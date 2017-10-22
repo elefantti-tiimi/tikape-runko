@@ -45,7 +45,6 @@ public class Database {
         lista.add("INSERT INTO Pirtelo (nimi, ohje) VALUES ('peruspirtelö', 'tunge kaikki aineet blenderiin ja muussaa kunnes sekaisin, lisää tarvittaessa maitoa tai jäätelöä jos haluat muokata koostumusta, huom. pirtelön pitää olla tarpeeksi hienoa, jottei fantin kärsä mene tukkoon!');");
         lista.add("INSERT INTO Pirtelo (nimi, ohje) VALUES ('banaanipirtelö', 'soseuta banaanit ja jäätelö blenderissä, nauti kookospalmun katveessa');");
         lista.add("INSERT INTO Pirtelo (nimi, ohje) VALUES ('suklaapirtelö', 'sulata suklaa vesihauteessa, surauta jäätelön kanssa blenderissä tasaiseksi mössöksi, lisää tarvittaessa maitoa');");
-        lista.add("INSERT INTO Pirtelo (nimi, ohje) VALUES ('Siltsun piripirtelö', 'vedä piri naamaan, unohda pirtelön tekeminen, hyppää rattiin ja valehtele poliisille');");
         lista.add("INSERT INTO Aines (nimi) VALUES ('jäätelö');");
         lista.add("INSERT INTO Aines (nimi) VALUES ('maito');");
         lista.add("INSERT INTO Aines (nimi) VALUES ('banaani');");
@@ -60,7 +59,6 @@ public class Database {
         lista.add("INSERT INTO AinesPirtelo (pirtelo_id, aines_id, maara, tyyppi) VALUES (2,5,1,'kpl, koristeeksi')");
         lista.add("INSERT INTO AinesPirtelo (pirtelo_id, aines_id, maara, tyyppi) VALUES (3,1,1,'l')");
         lista.add("INSERT INTO AinesPirtelo (pirtelo_id, aines_id, maara, tyyppi) VALUES (3,4,1,'levy')");
-        lista.add("INSERT INTO AinesPirtelo (pirtelo_id, aines_id, maara, tyyppi) VALUES (4,6,0.2,'g')");
         
 
         return lista;
