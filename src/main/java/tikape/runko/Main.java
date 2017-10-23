@@ -17,7 +17,6 @@ public class Main {
         Database database = new Database("jdbc:sqlite:pirtelot.db");
         database.init();        
         Spark.staticFileLocation("/public");
-//        Spark.init();
         PirteloDao pirteloDao = new PirteloDao(database);
         AinesDao ainesDao = new AinesDao(database);
         AinesPirteloDao ainesPirteloDao = new AinesPirteloDao(database);
@@ -102,6 +101,13 @@ public class Main {
             pirteloDao.delete(pirteloId);
             ainesPirteloDao.delete(pirteloId);
             res.redirect("/pirtelot");
+            return "";
+        });
+        
+        Spark.post("/pirtelot/:id/kuva", (req, res) -> {
+            Integer pirteloId = Integer.parseInt(req.params("id"));
+            pirteloDao.addKuva(pirteloId, req.queryParams("kuva"));
+            res.redirect("/pirtelot/" +pirteloId);
             return "";
         });
         

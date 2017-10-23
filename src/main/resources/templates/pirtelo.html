@@ -19,7 +19,15 @@
         <p>Olet saapunut pirtel&ouml;n
             <span th:text="${pirtelo.nimi}">pirtelo</span> reseptisivulle.
         </p>
-        
+        <div th:with="onkokuva=${pirtelo.kuva != null}">
+            <img th:if="${onkokuva}" th:src="${pirtelo.kuva}" th:alt="${pirtelo.kuva}"/>
+            <span th:unless="${onkokuva}">
+                <form method="POST" th:action="'/pirtelot/' + ${pirtelo.id} + '/kuva'">
+                    <input type="text" value="linkki" name="kuva"/>
+                    <input type="submit" value="lis&auml;&auml; kuva"/>
+                </form>
+            </span>
+        </div>
         <br/><br/>
         
         <div th:with="ainesehto=${pirteloaineet.isEmpty() != false}">

@@ -34,6 +34,7 @@ public class PirteloDao implements Dao<Pirtelo, Integer>{
 
         Pirtelo o = new Pirtelo(id,nimi);//,"",0.0);
         o.setOhje(rs.getString("ohje"));
+        o.setKuva(rs.getString("kuva"));
 
         rs.close();
         stmt.close();
@@ -161,6 +162,19 @@ public class PirteloDao implements Dao<Pirtelo, Integer>{
         Connection connection = database.getConnection();
         PreparedStatement stmt = connection.prepareStatement("UPDATE Pirtelo SET ohje=? WHERE id = ?");
         stmt.setString(1, ohje);
+        stmt.setInt(2,pid);
+        stmt.execute();
+        stmt.close();
+        connection.close();
+        return p;
+    }
+    
+    public Pirtelo addKuva(Integer pid, String kuva) throws SQLException {
+        Pirtelo p = this.findOne(pid);
+        p.setKuva(kuva);
+        Connection connection = database.getConnection();
+        PreparedStatement stmt = connection.prepareStatement("UPDATE Pirtelo SET kuva=? WHERE id = ?");
+        stmt.setString(1, kuva);
         stmt.setInt(2,pid);
         stmt.execute();
         stmt.close();
