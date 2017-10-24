@@ -38,6 +38,7 @@ public class Main {
         
         Spark.post("/pirtelot", (req, res) -> {
             String pirtelo = req.queryParams("pirtelo");
+            pirtelo = pirtelo.toLowerCase();
             pirteloDao.saveOrUpdate(new Pirtelo(pirtelo));
             res.redirect("/pirtelot");
             return "";
@@ -81,7 +82,8 @@ public class Main {
             Pirtelo p = pirteloDao.findOne(pirteloId);
             Aines a = ainesDao.findOne(Integer.parseInt(req.queryParams("ainesid")));
             Double maara = Double.parseDouble(req.queryParams("maara"));
-            String tyyppi = req.queryParams("tyyppi");  
+            String tyyppi = req.queryParams("tyyppi");
+            tyyppi = tyyppi.toLowerCase();
             AinesPirtelo ap = new AinesPirtelo(p, a, maara, tyyppi);
             ainesPirteloDao.saveOrUpdate(ap);
 
@@ -128,6 +130,7 @@ public class Main {
         
         Spark.post("/raakaaineet", (req, res) -> {
             String aines = req.queryParams("aines");
+            aines = aines.toLowerCase();
             ainesDao.saveOrUpdate(new Aines(aines));
             res.redirect("/raakaaineet");
             return "";
