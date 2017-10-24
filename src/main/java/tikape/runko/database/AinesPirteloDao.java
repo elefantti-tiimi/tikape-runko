@@ -104,11 +104,12 @@ public class AinesPirteloDao implements Dao<AinesPirtelo, Integer> {
     public AinesPirtelo saveOrUpdate(AinesPirtelo ap) throws SQLException {
         if (findOne(ap) != null) {
             Connection conn = database.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("UPDATE AinesPirtelo SET maara =?, tyyppi=? WHERE pirtelo_id=? AND aines_id=?");
+            PreparedStatement stmt = conn.prepareStatement("UPDATE AinesPirtelo SET maara =?, tyyppi=?, kuvaus=? WHERE pirtelo_id=? AND aines_id=?");
             stmt.setDouble(1, ap.getMaara());
             stmt.setString(2, ap.getTyyppi());
-            stmt.setInt(3, ap.getPirtelo().getId());
-            stmt.setInt(4, ap.getAines().getId());
+            stmt.setString(3, ap.getKuvaus());
+            stmt.setInt(4, ap.getPirtelo().getId());
+            stmt.setInt(5, ap.getAines().getId());
 
             stmt.execute();
             stmt.close();
@@ -117,17 +118,18 @@ public class AinesPirteloDao implements Dao<AinesPirtelo, Integer> {
         }
 
         Connection conn = database.getConnection();
-        PreparedStatement stmt = conn.prepareStatement("INSERT INTO AinesPirtelo (pirtelo_id, aines_id, maara, tyyppi) VALUES (?, ?, ?, ?)");
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO AinesPirtelo (pirtelo_id, aines_id, maara, tyyppi, kuvaus) VALUES (?, ?, ?, ?, ?)");
         stmt.setInt(1, ap.getPirtelo().getId());
         stmt.setInt(2, ap.getAines().getId());
         stmt.setDouble(3, ap.getMaara());
         stmt.setString(4, ap.getTyyppi());
+        stmt.setString(5, ap.getKuvaus());
         stmt.execute();
         stmt.close();
         conn.close();
         return null;
     }
-
+    
     public ArrayList<AinesPirtelo> findAllForPirtelo(Integer haettavaId) throws SQLException {
         PirteloDao pirteloDao = new PirteloDao(database);
         AinesDao ainesDao = new AinesDao(database);
@@ -142,7 +144,14 @@ public class AinesPirteloDao implements Dao<AinesPirtelo, Integer> {
             Pirtelo p = pirteloDao.findOne(rs.getInt("pirtelo_id"));
             Double maara = rs.getDouble("maara");
             String tyyppi = rs.getString("tyyppi");
-            ap.add(new AinesPirtelo(p, a, maara, tyyppi));
+            AinesPirtelo uusiAP = new AinesPirtelo(p, a, maara, tyyppi);
+            if (rs.getString("kuvaus") != null) {
+                uusiAP.setKuvaus(rs.getString("kuvaus"));
+            }
+            else {
+                uusiAP.setKuvaus("");
+            }
+            ap.add(uusiAP);
         }
 
         rs.close();

@@ -14,21 +14,22 @@
             <a href="/pirtelot">Pirtel&ouml;t</a>
             <a class="active" href="/raakaaineet">Raaka-aineet</a>
         </div>
-        <h1>Raaka-aineet</h1>
 
-        <ol>
-            <li th:each="aines: ${aineet}">
-                <a th:href="'raakaaineet/' + ${aines.getId()}">
-                <span th:text="${aines.getNimi()}">Raaka-aineen nimi</span>
-                </a>
-            </li>
-        </ol>
+        <h1>Raaka-aineet</h1>
 
         <form method="POST" action="/raakaaineet">
             Lis&auml;&auml; raaka-aine:<br/>
             <input type="text" name="aines" required="required"/><br/>
             <input type="submit" value="Lis&auml;&auml; raaka-aine"/>
         </form>
+
+        <ol>
+            <li th:each="aines: ${aineet}">
+                <a th:href="'raakaaineet/' + ${aines.getId()}">
+                    <span th:text="${aines.getNimi()}">Raaka-aineen nimi</span>
+                </a>
+            </li>
+        </ol>
 
     </body>
 </html>

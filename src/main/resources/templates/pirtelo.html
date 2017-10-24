@@ -32,14 +32,14 @@
         </div>
         <br/><br/>
         
+        <h4>Aineslista:</h4>
         <div th:with="ainesehto=${pirteloaineet.isEmpty() != false}">
             <span th:if="${ainesehto}">Pirtel&ouml;&ouml;n ei viel&auml; ole lis&auml;tty aineksia.</span>    
-            <span th:unless="${ainesehto}">Aineslista:</span>
         </div>
         
         <ol>
             <li th:each="pa: ${pirteloaineet}">
-                <span th:text="${pa.aines.nimi} +' '+${pa.maara}+' '+${pa.tyyppi}">Pirtelon aines</span>
+                <span th:text="${pa.aines.nimi} +' '+${pa.maara}+' '+${pa.tyyppi} +', '+${pa.kuvaus}">Pirtelon aines</span>
                 <form method="POST" th:action="'/pirtelot/' + ${pirtelo.id} +'/' + ${pa.aines.id}">                  
                     <input type="submit" value="poista aines"/>
                 </form>
@@ -47,7 +47,7 @@
         </ol>
         
         <br/> 
-        <p><b>Ohje:</b><br/></p>
+        <h4>Ohje:</h4>
         <div th:with="ohjeehto=${pirtelo.ohje != null}">
                 <span th:if="${ohjeehto}" th:text="${pirtelo.ohje}">Pirtelon ohje</span>
                 <span th:unless="${ohjeehto}">Pirtel&ouml;&ouml;n ei ole viel&auml; lis&auml;tty ohjetta.</span>
@@ -63,6 +63,7 @@
             </select>
             <input type="number" step="any" placeholder="lukum&auml;&auml;r&auml;" name="maara" min="0" required="required"/>
             <input type="text" placeholder="yksikk&ouml;" name="tyyppi" required="required"/>
+            <input type="text" placeholder="kuvaus" name="kuvaus"/>
             <input type="submit" value="lis&auml;&auml; tai muokkaa"/>
         </form>
         
@@ -74,7 +75,7 @@
                 <input type="submit" value="Lis&auml;&auml; tai muokkaa ohjetta"/>
             </form>
         </div>
-        <br/><br/><br/>
+        <br/><br/>
 
         <form method="POST" th:action="'/pirtelot/' + ${pirtelo.id} +'/poista'">
             <input type="submit" value="Poista pirtel&ouml;"/>

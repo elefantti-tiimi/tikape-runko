@@ -85,6 +85,7 @@ public class Main {
             String tyyppi = req.queryParams("tyyppi");
             tyyppi = tyyppi.toLowerCase();
             AinesPirtelo ap = new AinesPirtelo(p, a, maara, tyyppi);
+            ap.setKuvaus(req.queryParams("kuvaus"));
             ainesPirteloDao.saveOrUpdate(ap);
 
             res.redirect("/pirtelot/" + pirteloId);
