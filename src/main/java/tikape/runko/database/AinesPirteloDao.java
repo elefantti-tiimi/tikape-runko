@@ -25,14 +25,21 @@ public class AinesPirteloDao implements Dao<AinesPirtelo, Integer> {
 
     ;
     
-    private AinesPirtelo findOne(Integer pirteloId, Integer ainesId) throws SQLException {
+    private AinesPirtelo findOne(AinesPirtelo ap) throws SQLException {
         try (Connection conn = database.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM AinesPirtelo WHERE pirtelo_id =? AND aines_id =?");
-            stmt.setInt(1, pirteloId);
-            stmt.setInt(2, ainesId);
+            stmt.setInt(1, ap.getPirtelo().getId());
+            stmt.setInt(2, ap.getAines().getId());
             ResultSet rs = stmt.executeQuery();
-            
-            
+
+            if (rs.next()) {
+                AinesPirtelo uusiAP = new AinesPirtelo(ap.getPirtelo(), ap.getAines(), rs.getDouble("maara"), rs.getString("tyyppi"));
+                rs.close();
+                stmt.close();
+                conn.close();
+                return uusiAP;
+            }
+            rs.close();
             stmt.close();
             conn.close();
         }
@@ -95,14 +102,14 @@ public class AinesPirteloDao implements Dao<AinesPirtelo, Integer> {
     
     @Override
     public AinesPirtelo saveOrUpdate(AinesPirtelo ap) throws SQLException {
-        if (findOne(ap.getAines().getId(), ap.getPirtelo().getId()) != null) {
+        if (findOne(ap) != null) {
             Connection conn = database.getConnection();
             PreparedStatement stmt = conn.prepareStatement("UPDATE AinesPirtelo SET maara =?, tyyppi=? WHERE pirtelo_id=? AND aines_id=?");
             stmt.setDouble(1, ap.getMaara());
             stmt.setString(2, ap.getTyyppi());
             stmt.setInt(3, ap.getPirtelo().getId());
             stmt.setInt(4, ap.getAines().getId());
-            
+
             stmt.execute();
             stmt.close();
             conn.close();
