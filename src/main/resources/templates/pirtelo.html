@@ -13,72 +13,70 @@
             <a href="/pirtelot">Pirtel&ouml;t</a>
             <a href="/raakaaineet">Raaka-aineet</a>
         </div>
+        <div class="content">
+            <h1 th:text="${pirtelo.nimi}">Pirtel&ouml;n nimi</h1>
 
-        <h1 th:text="${pirtelo.nimi}">Pirtel&ouml;n nimi</h1>
-
-        <p>Olet saapunut pirtel&ouml;n
-            <span th:text="${pirtelo.nimi}">pirtelo</span> reseptisivulle.
-        </p>
-        <div th:with="onkokuva=${pirtelo.kuva != null}">
-            <img th:if="${onkokuva}" th:src="${pirtelo.kuva}" th:alt="${pirtelo.kuva}"/>
+            <p>Olet saapunut pirtel&ouml;n
+                <span th:text="${pirtelo.nimi}">pirtelo</span> reseptisivulle.
+            </p>
+            <div th:with="onkokuva=${pirtelo.kuva != null}">
+                <img th:if="${onkokuva}" th:src="${pirtelo.kuva}" th:alt="${pirtelo.kuva}"/>
                 <form method="POST" th:if="${onkokuva}" th:action="'/pirtelot/' + ${pirtelo.id} + '/poistakuva'">
                     <input type="submit" value="poista kuva"/>
                 </form>
-            
+
                 <form method="POST" th:unless="${onkokuva}" th:action="'/pirtelot/' + ${pirtelo.id} + '/kuva'">
                     <input type="text" placeholder="kuvan linkki" name="kuva"/>
                     <input type="submit" value="lis&auml;&auml; kuva"/>
                 </form>
-        </div>
-        <br/><br/>
-        
-        <h4>Aineslista:</h4>
-        <div th:with="ainesehto=${pirteloaineet.isEmpty() != false}">
-            <span th:if="${ainesehto}">Pirtel&ouml;&ouml;n ei viel&auml; ole lis&auml;tty aineksia.</span>    
-        </div>
-        
-        <ol>
-            <li th:each="pa: ${pirteloaineet}">
-                <span th:text="${pa.aines.nimi} +' '+${pa.maara}+' '+${pa.tyyppi} +', '+${pa.kuvaus}">Pirtelon aines</span>
-                <form method="POST" th:action="'/pirtelot/' + ${pirtelo.id} +'/' + ${pa.aines.id}">                  
-                    <input type="submit" value="poista aines"/>
-                </form>
-            </li>
-        </ol>
-        
-        <br/> 
-        <h4>Ohje:</h4>
-        <div th:with="ohjeehto=${pirtelo.ohje != null}">
+            </div>
+
+            <h4>Aineslista:</h4>
+            <div th:with="ainesehto=${pirteloaineet.isEmpty() != false}">
+                <span th:if="${ainesehto}">Pirtel&ouml;&ouml;n ei viel&auml; ole lis&auml;tty aineksia.</span>    
+            </div>
+
+            <ul>
+                <li th:each="pa: ${pirteloaineet}">
+                    <span th:text="${pa.aines.nimi} +' '+${pa.maaraMuutettu}+' '+${pa.tyyppi} +' '+${pa.kuvaus}">Pirtelon aines</span>
+                    <form method="POST" th:action="'/pirtelot/' + ${pirtelo.id} +'/' + ${pa.aines.id}">                  
+                        <input type="submit" value="poista aines"/>
+                    </form>
+                </li>
+            </ul>
+
+            <h4>Ohje:</h4>
+            <div style="margin-left:30px; width:40%;" th:with="ohjeehto=${pirtelo.ohje != null}">
                 <span th:if="${ohjeehto}" th:text="${pirtelo.ohje}">Pirtelon ohje</span>
                 <span th:unless="${ohjeehto}">Pirtel&ouml;&ouml;n ei ole viel&auml; lis&auml;tty ohjetta.</span>
-        </div>
-        
-        <br/><br/>
-        
-        Lis&auml;&auml; pirtel&ouml;&ouml;n aineksia: <form method="POST" th:action="'/pirtelot/' + ${pirtelo.id} + '/aines'">
-            <select name="ainesid" th:field="*{aines.id}">
-                <option th:each="aines : ${ainekset}" 
-                        th:value="${aines.id}" 
-                        th:text="${aines.nimi}">lisaa aines</option>
-            </select>
-            <input type="number" step="any" placeholder="lukum&auml;&auml;r&auml;" name="maara" min="0" required="required"/>
-            <input type="text" placeholder="yksikk&ouml;" name="tyyppi" required="required"/>
-            <input type="text" placeholder="kuvaus" name="kuvaus"/>
-            <input type="submit" value="lis&auml;&auml; tai muokkaa"/>
-        </form>
-        
-        <br/><br/>
-        <div th:with="ehto=${pirtelo.ohje != null}">
-            <textarea rows="10" cols="80" name="ohje" form="ohjeform" th:if="${ehto}" th:text="${pirtelo.ohje}">muokkaa ohjetta</textarea>
-            <textarea rows="10" cols="80" name="ohje" form="ohjeform" th:unless="${ehto}" placeholder="Lis&auml;&auml; t&auml;h&auml;n ohje..." required="required"></textarea>
-            <form method="POST" id="ohjeform" th:action="'/pirtelot/' + ${pirtelo.id} + '/ohje'" >
-                <input type="submit" value="Lis&auml;&auml; tai muokkaa ohjetta"/>
+            </div>
+
+            <h4>Lis&auml;&auml; pirtel&ouml;&ouml;n aineksia:</h4>
+            <form method="POST" th:action="'/pirtelot/' + ${pirtelo.id} + '/aines'">
+                <select name="ainesid" th:field="*{aines.id}">
+                    <option th:each="aines : ${ainekset}" 
+                            th:value="${aines.id}" 
+                            th:text="${aines.nimi}">lisaa aines</option>
+                </select>
+                <input type="number" step="0.1" placeholder="lukum&auml;&auml;r&auml;" name="maara" min="0" required="required"/>
+                <input type="text" placeholder="yksikk&ouml;" name="tyyppi" required="required"/>
+                <input type="text" placeholder="kuvaus" name="kuvaus"/>
+                <input type="submit" value="lis&auml;&auml; tai muokkaa"/>
+            </form>
+
+            <br/><br/>
+            <div th:with="ehto=${pirtelo.ohje != null}">
+                <textarea rows="10" cols="80" name="ohje" form="ohjeform" th:if="${ehto}" th:text="${pirtelo.ohje}">muokkaa ohjetta</textarea>
+                <textarea rows="10" cols="80" name="ohje" form="ohjeform" th:unless="${ehto}" placeholder="Lis&auml;&auml; t&auml;h&auml;n ohje..." required="required"></textarea>
+                <form method="POST" id="ohjeform" th:action="'/pirtelot/' + ${pirtelo.id} + '/ohje'" >
+                    <input type="submit" value="Lis&auml;&auml; tai muokkaa ohjetta"/>
+                </form>
+            </div>
+            <br/><br/>
+
+            <form method="POST" th:action="'/pirtelot/' + ${pirtelo.id} +'/poista'">
+                <input type="submit" value="Poista pirtel&ouml;"/>
             </form>
         </div>
-        <br/><br/>
-
-        <form method="POST" th:action="'/pirtelot/' + ${pirtelo.id} +'/poista'">
-            <input type="submit" value="Poista pirtel&ouml;"/>
-        </form>
     </body>
 </html>

@@ -14,6 +14,7 @@
             <a href="/pirtelot">Pirtel&ouml;t</a>
             <a class="active" href="/raakaaineet">Raaka-aineet</a>
         </div>
+        <div class="content">
 
         <h1>Raaka-aineet</h1>
 
@@ -23,13 +24,13 @@
             <input type="submit" value="Lis&auml;&auml; raaka-aine"/>
         </form>
 
-        <ol>
+        <ul>
             <li th:each="aines: ${aineet}">
                 <a th:href="'raakaaineet/' + ${aines.getId()}">
                     <span th:text="${aines.getNimi()}">Raaka-aineen nimi</span>
                 </a>
             </li>
-        </ol>
-
+        </ul>
+    </div>
     </body>
 </html>

@@ -1,9 +1,12 @@
 package tikape.runko.domain;
 
+import java.util.Locale;
+
 public class AinesPirtelo {
     
     // kertoo ainesosien määrän
     private Double maara;
+    private String maaraMuutettu;
     // kertoo minkä tyyppinen ainesosa kyseessä, esim. kpl, gramma tai suhde. Tämän voi tehdä myös enumina 
     private String tyyppi;
     // kertoo miten ainesosaa pirtelössä käytetään, esim. soseutettuna, katolta heitettynä
@@ -18,7 +21,7 @@ public class AinesPirtelo {
         this.aines = aines;
         this.maara = maara;
         this.tyyppi = tyyppi;
-        //this.ohje = ohje;
+        this.maaraMuutettu = muunna(maara);
     }
 
     public Double getMaara() {
@@ -27,6 +30,11 @@ public class AinesPirtelo {
 
     public void setMaara(Double maara) {
         this.maara = maara;
+        this.maaraMuutettu = muunna(maara);
+    }
+    
+    public String getMaaraMuutettu() {
+        return maaraMuutettu;       
     }
 
     public String getTyyppi() {
@@ -51,6 +59,15 @@ public class AinesPirtelo {
     
     public Pirtelo getPirtelo() {
         return pirtelo;
+    }
+    
+    private String muunna(double d) {
+        if(d == (long) d) {
+            return String.format(Locale.getDefault(), "%d",(long)d);
+        }
+        else {
+        return String.format(Locale.getDefault(),"%.1f",d);
+        }
     }
     
     

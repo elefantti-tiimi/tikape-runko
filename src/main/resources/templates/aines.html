@@ -13,28 +13,25 @@
             <a href="/pirtelot">Pirtel&ouml;t</a>
             <a href="/raakaaineet">Raaka-aineet</a>
         </div>
-
+        <div class="content">
         <h1 th:text="${aines.nimi}">Aineksen nimi</h1>
 
-        <p>Olet saapunut aineksen <span th:text="${aines.nimi}">aines
-            </span> sivulle.</p>
-        
-        <br/><br/>
         <div th:with="ehto=${pirtelot.isEmpty() != false}">
       
             <span th:if="${ehto}">Ainesta ei ole k&auml;ytetty viel&auml; miss&auml;&auml;n pirtel&ouml;reseptiss&auml;.</span>
             
             <span th:unless="${ehto}" th:text="'Ainesta ' + ${aines.nimi} + ' k&auml;ytet&auml;&auml;n seuraavissa pirtel&ouml;resepteiss&auml;:'">aines</span>
         </div>
-        <ol>
+        <ul>
             <li th:each="p: ${pirtelot}">            
                 <a th:href="'/pirtelot/' + ${p.id}"><span th:text="${p.nimi}">Pirtel&ouml;n nimi</span></a>
             </li>
-        </ol>
+        </ul>
         
 
         <form method="POST" th:action="'/raakaaineet/' + ${aines.id}">
             <input type="submit" value="Poista raaka-aine"/>
         </form>
+        </div>
     </body>
 </html>
