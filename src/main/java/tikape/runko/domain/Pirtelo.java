@@ -10,7 +10,6 @@ public class Pirtelo {
     private String nimi;
     private String ohje; //vapaa tekstikenttä, pirtelön valmistusohje vapaamuotoisesti kirjoitettuna
             //esim. "Sekoita kaikki ainekset keskenään, työnnä banaani korvaan ja nauti".
-    private Double hintaArvio; // Hakua varten, koska ainesten perusteella hakiessa hinta vaihtelee määristä riippuen 
     private String kuva;
     
     private ArrayList<Aines> ainekset;
@@ -27,7 +26,6 @@ public class Pirtelo {
         this.id = id;
         this.nimi = nimi;
         this.ohje = new String();// tarviiko ohjeen olla tyhjä?
-        //this.hintaArvio = hintaArvio;
         this.kuva = new String();
         this.ainekset = new ArrayList();
     }
