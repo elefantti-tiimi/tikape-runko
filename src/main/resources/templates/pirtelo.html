@@ -3,7 +3,7 @@
 
     <head>
         <title th:text="${pirtelo.getNimi()}">Otsikko</title>
-        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <link rel="stylesheet" type="text/css" media="all" href="/css/tyylit.css"/>
     </head>
 
@@ -21,12 +21,14 @@
         </p>
         <div th:with="onkokuva=${pirtelo.kuva != null}">
             <img th:if="${onkokuva}" th:src="${pirtelo.kuva}" th:alt="${pirtelo.kuva}"/>
-            <span th:unless="${onkokuva}">
-                <form method="POST" th:action="'/pirtelot/' + ${pirtelo.id} + '/kuva'">
+                <form method="POST" th:if="${onkokuva}" th:action="'/pirtelot/' + ${pirtelo.id} + '/poistakuva'">
+                    <input type="submit" value="poista kuva"/>
+                </form>
+            
+                <form method="POST" th:unless="${onkokuva}" th:action="'/pirtelot/' + ${pirtelo.id} + '/kuva'">
                     <input type="text" placeholder="kuvan linkki" name="kuva"/>
                     <input type="submit" value="lis&auml;&auml; kuva"/>
                 </form>
-            </span>
         </div>
         <br/><br/>
         
@@ -66,7 +68,7 @@
         
         <br/><br/>
         <div th:with="ehto=${pirtelo.ohje != null}">
-            <textarea rows="10" cols="80" name="ohje" form="ohjeform" th:if="${ehto}" th:text="${pirtelo.ohje}">Lisaa ohje</textarea>
+            <textarea rows="10" cols="80" name="ohje" form="ohjeform" th:if="${ehto}" th:text="${pirtelo.ohje}">muokkaa ohjetta</textarea>
             <textarea rows="10" cols="80" name="ohje" form="ohjeform" th:unless="${ehto}" placeholder="Lis&auml;&auml; t&auml;h&auml;n ohje..." required="required"></textarea>
             <form method="POST" id="ohjeform" th:action="'/pirtelot/' + ${pirtelo.id} + '/ohje'" >
                 <input type="submit" value="Lis&auml;&auml; tai muokkaa ohjetta"/>

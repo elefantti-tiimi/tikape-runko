@@ -8,7 +8,7 @@ public class AinesPirtelo {
     private String tyyppi;
     // kertoo miten ainesosaa pirtelössä käytetään, esim. soseutettuna, katolta heitettynä
     // näkyy sivulla ohjeena ja on vapaa teksti
-    private String ohje;
+    private String kuvaus;
     //esimerkkituloste: "5 (maara) kpl(tyyppi) [banaani] saappaan alla poljettuna(ohje)"
     private Aines aines;
     private Pirtelo pirtelo;
@@ -37,12 +37,12 @@ public class AinesPirtelo {
         this.tyyppi = tyyppi;
     }
 
-    public String getOhje() {
-        return ohje;
+    public String getKuvaus() {
+        return kuvaus;
     }
 
-    public void setOhje(String ohje) {
-        this.ohje = ohje;
+    public void setKuvaus(String kuvaus) {
+        this.kuvaus = kuvaus;
     }
     
     public Aines getAines() {

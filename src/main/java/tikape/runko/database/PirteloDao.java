@@ -181,5 +181,17 @@ public class PirteloDao implements Dao<Pirtelo, Integer>{
         connection.close();
         return p;
     }
+    
+    public Pirtelo deleteKuva(Integer pid, String kuva) throws SQLException {
+        Pirtelo p = this.findOne(pid);
+        p.setKuva(kuva);
+        Connection connection = database.getConnection();
+        PreparedStatement stmt = connection.prepareStatement("UPDATE Pirtelo SET kuva=null WHERE id = ?");
+        stmt.setInt(1,pid);
+        stmt.execute();
+        stmt.close();
+        connection.close();
+        return p;
+    }
 
 }

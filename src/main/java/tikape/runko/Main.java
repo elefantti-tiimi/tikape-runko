@@ -106,6 +106,13 @@ public class Main {
             return "";
         });
         
+        Spark.post("/pirtelot/:id/poistakuva", (req, res) -> {
+            Integer pirteloId = Integer.parseInt(req.params("id"));
+            pirteloDao.deleteKuva(pirteloId, req.queryParams("kuva"));
+            res.redirect("/pirtelot/" +pirteloId);
+            return "";
+        });
+        
         Spark.post("/pirtelot/:id/kuva", (req, res) -> {
             Integer pirteloId = Integer.parseInt(req.params("id"));
             pirteloDao.addKuva(pirteloId, req.queryParams("kuva"));
