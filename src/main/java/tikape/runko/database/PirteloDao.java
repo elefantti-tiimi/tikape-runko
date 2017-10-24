@@ -82,8 +82,8 @@ public class PirteloDao implements Dao<Pirtelo, Integer>{
     public Pirtelo saveOrUpdate(Pirtelo object) throws SQLException {
         Connection conn = database.getConnection();
         
-        if(this.findOne(object.getId()) != null) {
-            this.delete(object.getId());
+        if(this.findIdByName(object.getNimi()) != null) {
+            return null;
         }
         
         
