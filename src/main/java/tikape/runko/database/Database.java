@@ -41,7 +41,7 @@ public class Database {
         // tietokantataulujen luomiseen tarvittavat komennot suoritusjärjestyksessä
         lista.add("CREATE TABLE Pirtelo (id integer PRIMARY KEY, nimi varchar(255), ohje string, kuva string);");
         lista.add("CREATE TABLE Aines (id integer PRIMARY KEY, nimi varchar(255));");
-        lista.add("CREATE TABLE AinesPirtelo (pirtelo_id integer, aines_id integer, maara float, tyyppi varchar(255), FOREIGN KEY (pirtelo_id) REFERENCES Pirtelo(id), FOREIGN KEY (aines_id) REFERENCES Aines(id));");
+        lista.add("CREATE TABLE AinesPirtelo (pirtelo_id integer, aines_id integer, maara float, tyyppi varchar(255), kuvaus varchar(255), FOREIGN KEY (pirtelo_id) REFERENCES Pirtelo(id), FOREIGN KEY (aines_id) REFERENCES Aines(id));");
         lista.add("INSERT INTO Pirtelo (nimi, ohje, kuva) VALUES ('peruspirtelö', 'tunge kaikki aineet blenderiin ja muussaa kunnes sekaisin, lisää tarvittaessa maitoa tai jäätelöä jos haluat muokata koostumusta, huom. pirtelön pitää olla tarpeeksi hienoa, jottei fantin kärsä mene tukkoon!','/img/pirtelo.jpeg');");
         lista.add("INSERT INTO Pirtelo (nimi, ohje) VALUES ('banaanipirtelö', 'soseuta banaanit ja jäätelö blenderissä, nauti kookospalmun katveessa');");
         lista.add("INSERT INTO Pirtelo (nimi, ohje) VALUES ('suklaapirtelö', 'sulata suklaa vesihauteessa, surauta jäätelön kanssa blenderissä tasaiseksi mössöksi, lisää tarvittaessa maitoa');");
@@ -55,7 +55,7 @@ public class Database {
         lista.add("INSERT INTO AinesPirtelo (pirtelo_id, aines_id, maara, tyyppi) VALUES (2,1,0.5,'l')");
         lista.add("INSERT INTO AinesPirtelo (pirtelo_id, aines_id, maara, tyyppi) VALUES (2,2,2.5,'dl')");
         lista.add("INSERT INTO AinesPirtelo (pirtelo_id, aines_id, maara, tyyppi) VALUES (2,3,2,'kpl')");
-        lista.add("INSERT INTO AinesPirtelo (pirtelo_id, aines_id, maara, tyyppi) VALUES (2,5,1,'kpl, koristeeksi')");
+        lista.add("INSERT INTO AinesPirtelo (pirtelo_id, aines_id, maara, tyyppi, kuvaus) VALUES (2,5,1,'kpl','koristeeksi')");
         lista.add("INSERT INTO AinesPirtelo (pirtelo_id, aines_id, maara, tyyppi) VALUES (3,1,1,'l')");
         lista.add("INSERT INTO AinesPirtelo (pirtelo_id, aines_id, maara, tyyppi) VALUES (3,4,1,'levy')");
         
