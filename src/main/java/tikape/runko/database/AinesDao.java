@@ -79,8 +79,8 @@ public class AinesDao implements Dao<Aines, Integer>{
     public Aines saveOrUpdate(Aines object) throws SQLException {
         Connection conn = database.getConnection();
         
-        if(this.findOne(object.getId()) != null) {
-            this.delete(object.getId());
+        if(findIdByName(object.getNimi()) != null) {
+            return null;
         }
         
         PreparedStatement stmt = conn.prepareStatement("INSERT INTO Aines(nimi) VALUES(?)");
