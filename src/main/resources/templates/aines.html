@@ -22,9 +22,9 @@
         <br/><br/>
         <div th:with="ehto=${pirtelot.isEmpty() != false}">
       
-            <span th:if="${ehto}">Ainesta ei ole käytetty vielä missään pirtelöreseptissä</span>
+            <span th:if="${ehto}">Ainesta ei ole k&auml;ytetty viel&auml; miss&auml;&auml;n pirtel&ouml;reseptiss&auml;.</span>
             
-            <span th:unless="${ehto}" th:text="'Ainesta ' + ${aines.nimi} + ' käytetään seuraavissa pirtelöresepteissä'">aines</span>
+            <span th:unless="${ehto}" th:text="'Ainesta ' + ${aines.nimi} + ' k&auml;ytet&auml;&auml;n seuraavissa pirtel&ouml;resepteiss&auml;:'">aines</span>
         </div>
         <ol>
             <li th:each="p: ${pirtelot}">            

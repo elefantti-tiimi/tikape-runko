@@ -18,8 +18,9 @@
 
         <ol>
             <li th:each="aines: ${aineet}">
+                <a th:href="'raakaaineet/' + ${aines.getId()}">
                 <span th:text="${aines.getNimi()}">Raaka-aineen nimi</span>
-                (<a th:href="'raakaaineet/' + ${aines.getId()}">lis&auml;tietoja</a>)
+                </a>
             </li>
         </ol>
 

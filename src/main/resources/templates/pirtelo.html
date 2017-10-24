@@ -23,7 +23,7 @@
             <img th:if="${onkokuva}" th:src="${pirtelo.kuva}" th:alt="${pirtelo.kuva}"/>
             <span th:unless="${onkokuva}">
                 <form method="POST" th:action="'/pirtelot/' + ${pirtelo.id} + '/kuva'">
-                    <input type="text" value="linkki" name="kuva"/>
+                    <input type="text" placeholder="kuvan linkki" name="kuva"/>
                     <input type="submit" value="lis&auml;&auml; kuva"/>
                 </form>
             </span>
@@ -31,7 +31,7 @@
         <br/><br/>
         
         <div th:with="ainesehto=${pirteloaineet.isEmpty() != false}">
-            <span th:if="${ainesehto}">Pirtelöön ei vielä ole lisätty aineksia</span>    
+            <span th:if="${ainesehto}">Pirtel&ouml;&ouml;n ei viel&auml; ole lis&auml;tty aineksia.</span>    
             <span th:unless="${ainesehto}">Aineslista:</span>
         </div>
         
@@ -45,10 +45,10 @@
         </ol>
         
         <br/> 
-       
+        <p><b>Ohje:</b><br/></p>
         <div th:with="ohjeehto=${pirtelo.ohje != null}">
                 <span th:if="${ohjeehto}" th:text="${pirtelo.ohje}">Pirtelon ohje</span>
-                <span th:unless="${ohjeehto}">Pirtelöön ei ole vielä lisätty ohjetta</span>
+                <span th:unless="${ohjeehto}">Pirtel&ouml;&ouml;n ei ole viel&auml; lis&auml;tty ohjetta.</span>
         </div>
         
         <br/><br/>
@@ -57,17 +57,17 @@
             <select name="ainesid" th:field="*{aines.id}">
                 <option th:each="aines : ${ainekset}" 
                         th:value="${aines.id}" 
-                        th:text="${aines.nimi}">lisää aines</option>
+                        th:text="${aines.nimi}">lisaa aines</option>
             </select>
-            <input type="number" step="any" value="lukumäärä" name="maara" min="0" required="required"/>
-            <input type="text" value="yksikk&ouml;" name="tyyppi"/>
+            <input type="number" step="any" placeholder="lukum&auml;&auml;r&auml;" name="maara" min="0" required="required"/>
+            <input type="text" placeholder="yksikk&ouml;" name="tyyppi" required="required"/>
             <input type="submit" value="lis&auml;&auml; pirtel&ouml;&ouml;n"/>
         </form>
         
         <br/><br/>
         <div th:with="ehto=${pirtelo.ohje != null}">
-            <textarea rows="10" cols="80" name="ohje" form="ohjeform" th:if="${ehto}" th:text="${pirtelo.ohje}">Lis&auml;&auml; t&auml;h&auml;n ohje...</textarea>
-            <textarea rows="10" cols="80" name="ohje" form="ohjeform" th:unless="${ehto}">Lis&auml;&auml; t&auml;h&auml;n ohje...</textarea>
+            <textarea rows="10" cols="80" name="ohje" form="ohjeform" th:if="${ehto}" th:text="${pirtelo.ohje}">Lisaa ohje</textarea>
+            <textarea rows="10" cols="80" name="ohje" form="ohjeform" th:unless="${ehto}" placeholder="Lis&auml;&auml; t&auml;h&auml;n ohje..." required="required"></textarea>
             <form method="POST" id="ohjeform" th:action="'/pirtelot/' + ${pirtelo.id} + '/ohje'" >
                 <input type="submit" value="Lis&auml;&auml; tai muokkaa ohjetta"/>
             </form>
