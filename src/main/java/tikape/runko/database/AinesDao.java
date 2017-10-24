@@ -46,7 +46,7 @@ public class AinesDao implements Dao<Aines, Integer>{
     public List<Aines> findAll() throws SQLException {
 
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Aines");
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Aines ORDER BY nimi");
 
         ResultSet rs = stmt.executeQuery();
         List<Aines> ainekset = new ArrayList<>();

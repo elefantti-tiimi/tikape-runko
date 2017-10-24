@@ -158,6 +158,9 @@ public class PirteloDao implements Dao<Pirtelo, Integer>{
     
     public Pirtelo addOhje(Integer pid, String ohje) throws SQLException {
         Pirtelo p = this.findOne(pid);
+        if (ohje.length() == 0) {
+            ohje = null;
+        }
         p.setOhje(ohje);
         Connection connection = database.getConnection();
         PreparedStatement stmt = connection.prepareStatement("UPDATE Pirtelo SET ohje=? WHERE id = ?");
