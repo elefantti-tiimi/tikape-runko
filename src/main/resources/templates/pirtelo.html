@@ -20,7 +20,7 @@
                 <span th:text="${pirtelo.nimi}">pirtelo</span> reseptisivulle.
             </p>
             <div th:with="onkokuva=${pirtelo.kuva != null}">
-                <img th:if="${onkokuva}" th:src="${pirtelo.kuva}" th:alt="${pirtelo.kuva}"/>
+                <img class="pirtelo" th:if="${onkokuva}" th:src="${pirtelo.kuva}" th:alt="${pirtelo.kuva}"/>
                 <form method="POST" th:if="${onkokuva}" th:action="'/pirtelot/' + ${pirtelo.id} + '/poistakuva'">
                     <input type="submit" value="poista kuva"/>
                 </form>

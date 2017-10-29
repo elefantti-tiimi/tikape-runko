@@ -15,36 +15,21 @@
             <a href="/raakaaineet">Raaka-aineet</a>
         </div>
         <div class="content">
-        <h1>Pirtel&ouml;t</h1>
-        
-        <form method="POST" action="/pirtelot">
-            Lis&auml;&auml; pirtel&ouml;resepti:<br/>
-            <input type="text" name="pirtelo" required="required"/><br/>
-            <input type="submit" value="Lis&auml;&auml; pirtel&ouml;"/>
-        </form>
+            <h1>Pirtel&ouml;t</h1>
 
-        <h4>Fantin pirtel&ouml;valikoima</h4>
-        <ol>
-            <li th:each="pirtelo: ${pirtelot}">            
-                <a th:href="'pirtelot/' + ${pirtelo.id}"><span th:text="${pirtelo.nimi}">Pirtel&ouml;n nimi</span></a>
-            </li>
-        </ol>
+            <form method="POST" action="/pirtelot">
+                Lis&auml;&auml; pirtel&ouml;resepti:<br/>
+                <input type="text" name="pirtelo" required="required"/><br/>
+                <input type="submit" value="Lis&auml;&auml; pirtel&ouml;"/>
+            </form>
 
-        
+            <h4>Fantin pirtel&ouml;valikoima</h4>
+            <ol>
+                <li th:each="pirtelo: ${pirtelot}">            
+                    <a th:href="'pirtelot/' + ${pirtelo.id}"><span th:text="${pirtelo.nimi}">Pirtel&ouml;n nimi</span></a>
+                </li>
+            </ol>
 
-<!--        <form method="POST" action="/pirtelot/aines">
-            <br/><br/><b>Lis&auml;&auml; pirtel&ouml;&ouml;n aines:</b><br/>
-            Valitse pirtel&ouml;:<br/>
-            <select name="pirtelot">
-                <option th:each="pirtelo: ${pirtelot}" th:text="${pirtelo.getNimi()}">Pirtel&ouml;n nimi</option>
-            </select>
-            <br/>
-            Valitse aines:<br/>
-            <select name="ainekset">
-                <option th:each="aines: ${ainekset}" th:text="${aines.getNimi()}">Aineksen nimi</option>
-            </select>
-            <br/><br/><input type="submit" value="Lis&auml;&auml; aines"/>
-        </form>-->
         </div>
     </body>
 </html>
