@@ -46,7 +46,7 @@
             </ul>
 
             <h4>Ohje:</h4>
-            <div style="margin-left:30px; width:40%;" th:with="ohjeehto=${pirtelo.ohje != null}">
+            <div style="width:600px;" th:with="ohjeehto=${pirtelo.ohje != null}">
                 <span th:if="${ohjeehto}" th:text="${pirtelo.ohje}">Pirtelon ohje</span>
                 <span th:unless="${ohjeehto}">Pirtel&ouml;&ouml;n ei ole viel&auml; lis&auml;tty ohjetta.</span>
             </div>
